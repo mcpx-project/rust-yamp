@@ -1,0 +1,456 @@
+{
+  "flows": [
+    {
+      "in": {
+        "backends": [
+          {
+            "id": "b0",
+            "responses": {
+              "echo": {
+                "content": [
+                  {
+                    "text": "hi",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            "tools": [
+              "echo"
+            ]
+          }
+        ],
+        "client": [
+          {
+            "method": "tools/list",
+            "params": {}
+          },
+          {
+            "method": "tools/call",
+            "params": {
+              "arguments": {
+                "x": 1
+              },
+              "name": "echo"
+            }
+          }
+        ]
+      },
+      "name": "single_backend_list_and_call",
+      "out": [
+        {
+          "id": "init",
+          "jsonrpc": "2.0",
+          "result": {
+            "capabilities": {
+              "tools": {}
+            },
+            "protocolVersion": "2025-06-18",
+            "serverInfo": {
+              "name": "yamp",
+              "version": "0.0.0"
+            }
+          }
+        },
+        {
+          "id": "r0",
+          "jsonrpc": "2.0",
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/proxy-hops": [
+                {
+                  "layers": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "mode": "forward",
+                  "name": "yamp",
+                  "version": "0.0.0"
+                }
+              ]
+            },
+            "tools": [
+              {
+                "name": "echo"
+              }
+            ]
+          }
+        },
+        {
+          "id": "r1",
+          "jsonrpc": "2.0",
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/proxy-hops": [
+                {
+                  "layers": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "mode": "forward",
+                  "name": "yamp",
+                  "version": "0.0.0"
+                }
+              ]
+            },
+            "content": [
+              {
+                "text": "hi",
+                "type": "text"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "in": {
+        "backends": [
+          {
+            "id": "gh",
+            "responses": {
+              "create_issue": {
+                "content": [
+                  {
+                    "text": "gh-ok",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            "tools": [
+              "create_issue"
+            ]
+          },
+          {
+            "id": "fs",
+            "responses": {
+              "read": {
+                "content": [
+                  {
+                    "text": "fs-ok",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            "tools": [
+              "read"
+            ]
+          }
+        ],
+        "client": [
+          {
+            "method": "tools/list",
+            "params": {}
+          },
+          {
+            "method": "tools/call",
+            "params": {
+              "arguments": {},
+              "name": "gh__create_issue"
+            }
+          },
+          {
+            "method": "tools/call",
+            "params": {
+              "arguments": {},
+              "name": "fs__read"
+            }
+          }
+        ]
+      },
+      "name": "two_backends_merged_and_routed",
+      "out": [
+        {
+          "id": "init",
+          "jsonrpc": "2.0",
+          "result": {
+            "capabilities": {
+              "tools": {}
+            },
+            "protocolVersion": "2025-06-18",
+            "serverInfo": {
+              "name": "yamp",
+              "version": "0.0.0"
+            }
+          }
+        },
+        {
+          "id": "r0",
+          "jsonrpc": "2.0",
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/proxy-hops": [
+                {
+                  "layers": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "mode": "forward",
+                  "name": "yamp",
+                  "version": "0.0.0"
+                }
+              ]
+            },
+            "tools": [
+              {
+                "name": "gh__create_issue"
+              },
+              {
+                "name": "fs__read"
+              }
+            ]
+          }
+        },
+        {
+          "id": "r1",
+          "jsonrpc": "2.0",
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/proxy-hops": [
+                {
+                  "layers": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "mode": "forward",
+                  "name": "yamp",
+                  "version": "0.0.0"
+                }
+              ]
+            },
+            "content": [
+              {
+                "text": "gh-ok",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "id": "r2",
+          "jsonrpc": "2.0",
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/proxy-hops": [
+                {
+                  "layers": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "mode": "forward",
+                  "name": "yamp",
+                  "version": "0.0.0"
+                }
+              ]
+            },
+            "content": [
+              {
+                "text": "fs-ok",
+                "type": "text"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "in": {
+        "backends": [
+          {
+            "id": "gh",
+            "tools": [
+              "create_issue"
+            ]
+          },
+          {
+            "id": "fs",
+            "tools": [
+              "read"
+            ]
+          }
+        ],
+        "client": [
+          {
+            "method": "tools/call",
+            "params": {
+              "arguments": {},
+              "name": "zz__nope"
+            }
+          }
+        ]
+      },
+      "name": "unknown_tool_is_rejected",
+      "out": [
+        {
+          "id": "init",
+          "jsonrpc": "2.0",
+          "result": {
+            "capabilities": {
+              "tools": {}
+            },
+            "protocolVersion": "2025-06-18",
+            "serverInfo": {
+              "name": "yamp",
+              "version": "0.0.0"
+            }
+          }
+        },
+        {
+          "error": {
+            "code": -32602,
+            "message": "unknown name: zz__nope"
+          },
+          "id": "r0",
+          "jsonrpc": "2.0"
+        }
+      ]
+    },
+    {
+      "in": {
+        "backends": [
+          {
+            "id": "gh",
+            "tools": [
+              "create_issue"
+            ]
+          }
+        ],
+        "client": [
+          {
+            "method": "tools/call",
+            "params": {
+              "arguments": {},
+              "name": "create_issue"
+            }
+          }
+        ],
+        "filter": {
+          "kind": "deny_tool",
+          "reason": "blocked by policy",
+          "tool": "create_issue"
+        }
+      },
+      "name": "filter_denies_a_tool",
+      "out": [
+        {
+          "id": "init",
+          "jsonrpc": "2.0",
+          "result": {
+            "capabilities": {
+              "tools": {}
+            },
+            "protocolVersion": "2025-06-18",
+            "serverInfo": {
+              "name": "yamp",
+              "version": "0.0.0"
+            }
+          }
+        },
+        {
+          "error": {
+            "code": -32001,
+            "message": "blocked by policy"
+          },
+          "id": "r0",
+          "jsonrpc": "2.0"
+        }
+      ]
+    },
+    {
+      "in": {
+        "backends": [
+          {
+            "echo_args": true,
+            "id": "gh",
+            "tools": [
+              "create_issue"
+            ]
+          }
+        ],
+        "client": [
+          {
+            "method": "tools/call",
+            "params": {
+              "arguments": {
+                "keep": 1,
+                "secret": "raw"
+              },
+              "name": "create_issue"
+            }
+          }
+        ],
+        "filter": {
+          "arg": "secret",
+          "kind": "redact_arg",
+          "to": "[redacted]"
+        }
+      },
+      "name": "filter_redacts_an_argument",
+      "out": [
+        {
+          "id": "init",
+          "jsonrpc": "2.0",
+          "result": {
+            "capabilities": {
+              "tools": {}
+            },
+            "protocolVersion": "2025-06-18",
+            "serverInfo": {
+              "name": "yamp",
+              "version": "0.0.0"
+            }
+          }
+        },
+        {
+          "id": "r0",
+          "jsonrpc": "2.0",
+          "result": {
+            "_meta": {
+              "io.modelcontextprotocol/proxy-hops": [
+                {
+                  "layers": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "mode": "forward",
+                  "name": "yamp",
+                  "version": "0.0.0"
+                }
+              ]
+            },
+            "arguments": {
+              "keep": 1,
+              "secret": "[redacted]"
+            },
+            "content": [
+              {
+                "text": "create_issue",
+                "type": "text"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

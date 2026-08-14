@@ -1,0 +1,265 @@
+{
+  "note": "Normative-clause -> covering-test traceability (the SEP-2484 pattern). Clauses are drawn from SEP-0000 (section is the SEP-0000 section number) and from the corpus SEPs the implementation adopts (section is the corpus SEP number, e.g. 2053). Each clause names the tests in each arm that exercise it; conformance/test_traceability.py and rust/tests/traceability.rs verify that every named test exists, so a renamed or removed test breaks the matrix. This doubles as yamp's own conformance evidence. Regenerate coverage by hand when clauses or tests change.",
+  "clauses": [
+    {
+      "id": "SEP-2.1-server-discover",
+      "section": "2.1",
+      "level": "MUST",
+      "text": "The intermediary MUST support server/discover, composing results from all healthy backends.",
+      "tests": {
+        "python": ["test_server_discover_composes_backend_tools"],
+        "rust": ["server_discover_composes_backend_tools"]
+      }
+    },
+    {
+      "id": "SEP-2.1-version-reject",
+      "section": "2.1",
+      "level": "MUST",
+      "text": "A request whose declared protocol version cannot be served MUST be rejected with error -32004, whose data names the supported set.",
+      "tests": {
+        "python": ["test_negotiate_rejects_unsupported", "test_unsupported_error_data_names_supported_set"],
+        "rust": ["negotiate_rejects_unsupported", "unsupported_error_data_names_supported_set"]
+      }
+    },
+    {
+      "id": "SEP-2.2-compose-initialize",
+      "section": "2.2",
+      "level": "MUST",
+      "text": "Compose a single initialize response whose protocolVersion and serverInfo are the intermediary's.",
+      "tests": {
+        "python": ["test_router_gates"],
+        "rust": ["full_router_session"]
+      }
+    },
+    {
+      "id": "SEP-2.3-capability-composition",
+      "section": "2.3",
+      "level": "MUST",
+      "text": "Compose server capabilities per the primitive table: sampling/logging any-backend, elicitation client, extensions unioned.",
+      "tests": {
+        "python": ["test_compose_capabilities_any_backend_primitives", "test_compose_capabilities_elicitation_follows_client", "test_compose_capabilities_extensions_unioned"],
+        "rust": ["differential_corpus_matches_rust_arm"]
+      }
+    },
+    {
+      "id": "SEP-3.1-tool-namespacing",
+      "section": "3.1",
+      "level": "MUST",
+      "text": "Tool names MUST be namespaced with the __ delimiter and reverse-resolved on tools/call.",
+      "tests": {
+        "python": ["test_router_gates"],
+        "rust": ["full_router_session"]
+      }
+    },
+    {
+      "id": "SEP-3.1-backend-id-delimiter",
+      "section": "3.1",
+      "level": "MUST",
+      "text": "A backend identifier carrying the __ delimiter MUST be rejected at configuration time.",
+      "tests": {
+        "python": ["test_backend_id_with_delimiter_rejected", "test_invalid_backend_id_rejected"],
+        "rust": ["backend_id_with_delimiter_rejected", "invalid_backend_id_rejected"]
+      }
+    },
+    {
+      "id": "SEP-3.2-resource-uri-namespacing",
+      "section": "3.2",
+      "level": "MUST",
+      "text": "Resource URIs MUST be namespaced by prepending the backend id as a path segment, and reverse-resolved on resources/read.",
+      "tests": {
+        "python": ["test_prompts_and_resources_namespaced_and_routed"],
+        "rust": ["prompts_and_resources_namespaced_and_routed"]
+      }
+    },
+    {
+      "id": "SEP-3.4-declare-strategy",
+      "section": "3.4",
+      "level": "MUST",
+      "text": "Implement at least one collision strategy and declare the active one; priority drops the lower-priority duplicate.",
+      "tests": {
+        "python": ["test_priority_strategy_drops_lower_priority_collision"],
+        "rust": ["priority_strategy_drops_lower_priority_collision"]
+      }
+    },
+    {
+      "id": "SEP-3.4-manual-reject-collision",
+      "section": "3.4",
+      "level": "MUST",
+      "text": "The manual strategy MUST reject an unresolved collision (two names mapping to one exposed name).",
+      "tests": {
+        "python": ["test_manual_strategy_rejects_unresolved_collision", "test_resolve_manual_rejects_unresolved_collision"],
+        "rust": ["manual_strategy_rejects_unresolved_collision", "resolve_manual_rejects_unresolved_collision"]
+      }
+    },
+    {
+      "id": "SEP-4-credential-injection",
+      "section": "4",
+      "level": "MUST",
+      "text": "Support per-backend credential injection; a client credential MUST NOT reach a backend (confused deputy).",
+      "tests": {
+        "python": ["test_backend_credential_injected_and_client_not_leaked_e2e", "test_credential_injection_does_not_leak_client_token"],
+        "rust": ["backend_credential_injected_and_client_not_leaked", "credential_injection_does_not_leak_client_token"]
+      }
+    },
+    {
+      "id": "SEP-4-header-scoped",
+      "section": "4",
+      "level": "MUST",
+      "text": "Header forwarding MUST be scoped per-backend.",
+      "tests": {
+        "python": ["test_header_forwarding_is_scoped_and_can_rename"],
+        "rust": ["header_forwarding_scoped_and_renamed"]
+      }
+    },
+    {
+      "id": "SEP-5.1-bidirectional-reply",
+      "section": "5.1",
+      "level": "MUST",
+      "text": "Assign a client-facing id for a backend-initiated request, remember the association, and restore the backend's id on the client's reply.",
+      "tests": {
+        "python": ["test_server_initiated_request_reply_routes_back_to_backend"],
+        "rust": ["server_initiated_request_reply_routes_back_to_backend"]
+      }
+    },
+    {
+      "id": "SEP-5.1-client-notification",
+      "section": "5.1",
+      "level": "MUST",
+      "text": "A client-originated notification MUST be forwarded onward to the backends.",
+      "tests": {
+        "python": ["test_client_notification_forwarded_to_backend"],
+        "rust": ["client_notification_forwarded_to_backend"]
+      }
+    },
+    {
+      "id": "SEP-6.2-cache-invalidation",
+      "section": "6.2",
+      "level": "MUST",
+      "text": "Invalidate cached capability lists on a backend list_changed and on a breaker opening.",
+      "tests": {
+        "python": ["test_list_changed_invalidates_cache", "test_breaker_open_invalidates_cache"],
+        "rust": ["list_changed_invalidates_cache", "breaker_open_invalidates_cache"]
+      }
+    },
+    {
+      "id": "SEP-6-cache-freshness",
+      "section": "6",
+      "level": "MUST",
+      "text": "Respect ttlMs and cacheScope: a fresh hit is served, collapsing repeated list fetches.",
+      "tests": {
+        "python": ["test_cache_hit_collapses_fetches", "test_shared_cache_collapses_across_connections"],
+        "rust": ["cache_hit_collapses_fetches", "shared_cache_collapses_across_connections"]
+      }
+    },
+    {
+      "id": "SEP-7.1-hop-metadata",
+      "section": "7.1",
+      "level": "MUST",
+      "text": "Add hop metadata to the _meta field of forwarded messages.",
+      "tests": {
+        "python": ["test_forward_path_adds_hop_and_trace_context"],
+        "rust": ["forward_path_adds_hop_and_trace"]
+      }
+    },
+    {
+      "id": "SEP-7.2-trace-context",
+      "section": "7.2",
+      "level": "MUST",
+      "text": "Propagate traceparent/tracestate; Level 1 forwards standard headers byte-identical.",
+      "tests": {
+        "python": ["test_existing_traceparent_and_state_preserved", "test_standard_headers_forwarded_byte_identical"],
+        "rust": ["existing_trace_context_preserved", "standard_headers_forwarded_byte_identical"]
+      }
+    },
+    {
+      "id": "SEP-8-breaker-open",
+      "section": "8",
+      "level": "MUST",
+      "text": "On breaker open, remove the backend's tools from the list, emit tools/list_changed, and return -32003 on its calls.",
+      "tests": {
+        "python": ["test_open_breaker_gives_partial_list_and_unavailable_call", "test_chaos_open_breaker_removes_tools_and_blocks_calls"],
+        "rust": ["resilient_partial_list_and_unavailable_call", "chaos_open_breaker_removes_tools_and_blocks_calls"]
+      }
+    },
+    {
+      "id": "SEP-13-header-body-agreement",
+      "section": "13",
+      "level": "MUST",
+      "text": "In body-parsing Level 2, the transport headers (Mcp-Method/Mcp-Name) MUST agree with the body; a divergent body is rejected.",
+      "tests": {
+        "python": ["test_header_body_validation"],
+        "rust": ["header_body_validation_rejects_divergent_body"]
+      }
+    },
+    {
+      "id": "SEP-2053-variant-composition",
+      "section": "2053",
+      "level": "SHOULD",
+      "text": "An aggregating intermediary composes availableVariants across backends, offering only variants every variant-supporting backend can serve (intersection).",
+      "tests": {
+        "python": ["test_handshake_composes_offered_variants_by_intersection"],
+        "rust": ["handshake_composes_offered_variants_by_intersection"]
+      }
+    },
+    {
+      "id": "SEP-2053-variant-selection",
+      "section": "2053",
+      "level": "MUST",
+      "text": "The intermediary forwards the client's per-request variant to backends and rejects a variant the composed set does not offer with -32602.",
+      "tests": {
+        "python": ["test_selected_variant_forwarded_to_backends", "test_unknown_variant_rejected"],
+        "rust": ["selected_variant_forwarded_to_backends", "unknown_variant_rejected"]
+      }
+    },
+    {
+      "id": "SEP-2053-cursor-binding",
+      "section": "2053",
+      "level": "MUST",
+      "text": "Pagination cursors are variant-scoped: the aggregator mints a composite cursor bound to the active variant and each paginating backend's own cursor, and reverse-resolves a continuation to exactly those backends.",
+      "tests": {
+        "python": ["test_composite_cursor_paginates_and_binds_variant"],
+        "rust": ["composite_cursor_paginates_and_binds_variant"]
+      }
+    },
+    {
+      "id": "SEP-2053-cursor-variant-mismatch",
+      "section": "2053",
+      "level": "MUST",
+      "text": "A cursor used under a different variant than the one that minted it MUST be rejected with -32602 and data naming cursorVariant/requestedVariant.",
+      "tests": {
+        "python": ["test_cursor_rejected_under_wrong_variant"],
+        "rust": ["cursor_rejected_under_wrong_variant"]
+      }
+    },
+    {
+      "id": "SEP-2.1-server-discover-registry",
+      "section": "2.1",
+      "level": "MUST",
+      "text": "In pure-server mode (a registry with zero backends), the intermediary answers server/discover and tools/list from the local handler surface.",
+      "tests": {
+        "python": ["test_pure_server_mode_serves_from_handlers_with_cache_directives"],
+        "rust": ["pure_server_mode_serves_from_handlers_with_cache_directives"]
+      }
+    },
+    {
+      "id": "SEP-2.2-server-protocol-version",
+      "section": "2.2",
+      "level": "MUST",
+      "text": "The server-role handshake advertises a protocolVersion drawn from the single supported set, whatever the client requested.",
+      "tests": {
+        "python": ["test_server_advertises_a_supported_protocol_version"],
+        "rust": ["server_advertises_a_supported_protocol_version"]
+      }
+    },
+    {
+      "id": "SEP-3.2-resource-subscription-namespacing",
+      "section": "3.2",
+      "level": "MUST",
+      "text": "A resources/subscribe reverse-resolves its namespaced URI to the owning backend, and the backend's notifications/resources/updated is re-namespaced so the client sees the backend__uri it holds.",
+      "tests": {
+        "python": ["test_subscribe_routes_and_updated_is_renamespaced"],
+        "rust": ["subscribe_routes_and_updated_is_renamespaced"]
+      }
+    }
+  ]
+}

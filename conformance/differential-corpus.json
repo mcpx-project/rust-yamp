@@ -1,0 +1,4236 @@
+{
+  "cases": [
+    {
+      "in": {
+        "id": "gh",
+        "name": "create_issue"
+      },
+      "op": "namespace_prefix",
+      "out": "gh__create_issue"
+    },
+    {
+      "in": {
+        "id": "a_b",
+        "name": "tool__with__delims"
+      },
+      "op": "namespace_prefix",
+      "out": "a_b__tool__with__delims"
+    },
+    {
+      "in": {
+        "id": "x",
+        "name": "y"
+      },
+      "op": "namespace_prefix",
+      "out": "x__y"
+    },
+    {
+      "in": "gh__create_issue",
+      "op": "namespace_split",
+      "out": [
+        "gh",
+        "create_issue"
+      ]
+    },
+    {
+      "in": "a__b__c",
+      "op": "namespace_split",
+      "out": [
+        "a",
+        "b__c"
+      ]
+    },
+    {
+      "in": "nodelimiter",
+      "op": "namespace_split",
+      "out": null
+    },
+    {
+      "in": "__leading",
+      "op": "namespace_split",
+      "out": null
+    },
+    {
+      "in": "trailing__",
+      "op": "namespace_split",
+      "out": null
+    },
+    {
+      "in": {
+        "id": "docs",
+        "uri": "file:///reports/q3.md"
+      },
+      "op": "namespace_prefix_uri",
+      "out": "file:///docs/reports/q3.md"
+    },
+    {
+      "in": {
+        "id": "docs",
+        "uri": "https://ex.com/p"
+      },
+      "op": "namespace_prefix_uri",
+      "out": "https://ex.com/docs/p"
+    },
+    {
+      "in": {
+        "id": "docs",
+        "uri": "scheme://auth"
+      },
+      "op": "namespace_prefix_uri",
+      "out": "scheme://auth/docs"
+    },
+    {
+      "in": "file:///docs/reports/q3.md",
+      "op": "namespace_split_uri",
+      "out": [
+        "docs",
+        "file:///reports/q3.md"
+      ]
+    },
+    {
+      "in": "scheme://auth/docs",
+      "op": "namespace_split_uri",
+      "out": [
+        "docs",
+        "scheme://auth"
+      ]
+    },
+    {
+      "in": "mailto:x",
+      "op": "namespace_split_uri",
+      "out": null
+    },
+    {
+      "in": "scheme://auth",
+      "op": "namespace_split_uri",
+      "out": null
+    },
+    {
+      "in": {
+        "a": 1,
+        "b": 2,
+        "nested": {
+          "y": 25,
+          "z": 26
+        }
+      },
+      "op": "signing_canonical",
+      "out": "{\"a\":1,\"b\":2,\"nested\":{\"y\":25,\"z\":26}}"
+    },
+    {
+      "in": {
+        "record": {
+          "a": 1,
+          "b": 2,
+          "nested": {
+            "y": 25,
+            "z": 26
+          }
+        },
+        "secret": "s3cr3t"
+      },
+      "op": "signing_sign",
+      "out": "e2683657b4ea014e924128a6754cd60a456c8b7f352ed70d12620ac14d203ab8"
+    },
+    {
+      "in": {
+        "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+        "record": {
+          "a": 1,
+          "b": 2,
+          "nested": {
+            "y": 25,
+            "z": 26
+          }
+        }
+      },
+      "op": "signing_chain",
+      "out": "3a41ec7e13b1578cb9261d545c1a8af29774703960d7ce2350f9449bb0009212"
+    },
+    {
+      "in": {
+        "method": "tools/call",
+        "name": "gh__create_issue",
+        "principal": "alice",
+        "type": "attestation"
+      },
+      "op": "signing_canonical",
+      "out": "{\"method\":\"tools/call\",\"name\":\"gh__create_issue\",\"principal\":\"alice\",\"type\":\"attestation\"}"
+    },
+    {
+      "in": {
+        "record": {
+          "method": "tools/call",
+          "name": "gh__create_issue",
+          "principal": "alice",
+          "type": "attestation"
+        },
+        "secret": "s3cr3t"
+      },
+      "op": "signing_sign",
+      "out": "b45108190e9a709245b5b6bf8b5e3559e7cac4f4d1726f966d476fbeb4323be9"
+    },
+    {
+      "in": {
+        "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+        "record": {
+          "method": "tools/call",
+          "name": "gh__create_issue",
+          "principal": "alice",
+          "type": "attestation"
+        }
+      },
+      "op": "signing_chain",
+      "out": "b21c89595122bd7ad5ef4f19bd03db2435ee8b088d0b49bab50c030f8bed7f7c"
+    },
+    {
+      "in": {
+        "method": "tools/call",
+        "name": "gh__create_issue",
+        "ok": true,
+        "type": "outcome"
+      },
+      "op": "signing_canonical",
+      "out": "{\"method\":\"tools/call\",\"name\":\"gh__create_issue\",\"ok\":true,\"type\":\"outcome\"}"
+    },
+    {
+      "in": {
+        "record": {
+          "method": "tools/call",
+          "name": "gh__create_issue",
+          "ok": true,
+          "type": "outcome"
+        },
+        "secret": "s3cr3t"
+      },
+      "op": "signing_sign",
+      "out": "d820c6b8b9b2c1251377ec75d18262f3485ddc2c0e1e48aa9d165b415caa7dbb"
+    },
+    {
+      "in": {
+        "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+        "record": {
+          "method": "tools/call",
+          "name": "gh__create_issue",
+          "ok": true,
+          "type": "outcome"
+        }
+      },
+      "op": "signing_chain",
+      "out": "3dd33572f98c7b1d2cfc0551120ce0b46ef3e13af0522b7e7d222c11e6227683"
+    },
+    {
+      "in": {
+        "backends": [
+          {
+            "sampling": {},
+            "tools": {}
+          },
+          {
+            "logging": {}
+          }
+        ],
+        "client": {
+          "elicitation": {}
+        }
+      },
+      "op": "capability_compose",
+      "out": {
+        "elicitation": {},
+        "logging": {},
+        "sampling": {},
+        "tools": {}
+      }
+    },
+    {
+      "in": {
+        "backends": [
+          {
+            "extensions": {
+              "a": 1
+            },
+            "tools": {}
+          },
+          {
+            "extensions": {
+              "b": 2
+            }
+          }
+        ],
+        "client": {}
+      },
+      "op": "capability_compose",
+      "out": {
+        "extensions": {
+          "a": 1,
+          "b": 2
+        },
+        "tools": {}
+      }
+    },
+    {
+      "in": {
+        "backends": [
+          {
+            "tools": {}
+          }
+        ],
+        "client": null
+      },
+      "op": "capability_compose",
+      "out": {
+        "tools": {}
+      }
+    },
+    {
+      "in": {
+        "backends": [
+          {
+            "extensions": {
+              "io.modelcontextprotocol/server-variants": {
+                "availableVariants": [
+                  {
+                    "id": "a"
+                  },
+                  {
+                    "id": "b"
+                  },
+                  {
+                    "id": "c"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "extensions": {
+              "io.modelcontextprotocol/server-variants": {
+                "availableVariants": [
+                  {
+                    "id": "b"
+                  },
+                  {
+                    "id": "c"
+                  },
+                  {
+                    "id": "d"
+                  }
+                ]
+              }
+            }
+          },
+          {}
+        ]
+      },
+      "op": "variants_compose",
+      "out": [
+        {
+          "id": "b"
+        },
+        {
+          "id": "c"
+        }
+      ]
+    },
+    {
+      "in": {
+        "backends": [
+          {
+            "extensions": {
+              "io.modelcontextprotocol/server-variants": {
+                "availableVariants": [
+                  {
+                    "id": "a"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "extensions": {
+              "io.modelcontextprotocol/server-variants": {
+                "availableVariants": [
+                  {
+                    "id": "b"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "op": "variants_compose",
+      "out": []
+    },
+    {
+      "in": {
+        "backends": [
+          {},
+          {}
+        ]
+      },
+      "op": "variants_compose",
+      "out": []
+    },
+    {
+      "in": {
+        "cursors": {
+          "b0": "backend-p2"
+        },
+        "variant": "a"
+      },
+      "op": "variants_bind_cursor",
+      "out": "yv1:7b2263223a7b226230223a226261636b656e642d7032227d2c2276223a2261227d"
+    },
+    {
+      "in": {
+        "cursors": {
+          "b0": "p1",
+          "b1": "p9"
+        },
+        "variant": null
+      },
+      "op": "variants_bind_cursor",
+      "out": "yv1:7b2263223a7b226230223a227031222c226231223a227039227d2c2276223a6e756c6c7d"
+    },
+    {
+      "in": {
+        "cursors": {},
+        "variant": "compact"
+      },
+      "op": "variants_bind_cursor",
+      "out": "yv1:7b2263223a7b7d2c2276223a22636f6d70616374227d"
+    },
+    {
+      "in": {
+        "cursors": {
+          "b0": "na\u00efve",
+          "b1": "stra\u00dfe"
+        },
+        "variant": "caf\u00e9"
+      },
+      "op": "variants_bind_cursor",
+      "out": "yv1:7b2263223a7b226230223a226e61c3af7665222c226231223a2273747261c39f65227d2c2276223a22636166c3a9227d"
+    },
+    {
+      "in": {
+        "_meta": {
+          "io.modelcontextprotocol/server-variant": "compact"
+        }
+      },
+      "op": "variants_selected",
+      "out": "compact"
+    },
+    {
+      "in": {
+        "_meta": {}
+      },
+      "op": "variants_selected",
+      "out": null
+    },
+    {
+      "in": {},
+      "op": "variants_selected",
+      "out": null
+    },
+    {
+      "in": {
+        "extensions": {
+          "io.modelcontextprotocol/server-variants": {
+            "availableVariants": [
+              {
+                "id": "a"
+              },
+              {
+                "id": "b"
+              }
+            ]
+          }
+        }
+      },
+      "op": "variants_available",
+      "out": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "in": {},
+      "op": "variants_available",
+      "out": []
+    },
+    {
+      "in": "dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk",
+      "op": "auth_code_challenge",
+      "out": "E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM"
+    },
+    {
+      "in": "abc123",
+      "op": "auth_code_challenge",
+      "out": "bKE9UspwyIPg8LsQHkJaiehiTeUdstI5JZOvaoQRgJA"
+    },
+    {
+      "in": "x",
+      "op": "auth_code_challenge",
+      "out": "LXEWQrcmsEQBYnyp-6wy9chTD7GQPMTbAiWHF5IaSIE"
+    },
+    {
+      "in": {
+        "audience": "https://gh",
+        "scope": "repo",
+        "subject_token": "T1"
+      },
+      "op": "auth_token_exchange_request",
+      "out": {
+        "audience": "https://gh",
+        "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
+        "scope": "repo",
+        "subject_token": "T1",
+        "subject_token_type": "urn:ietf:params:oauth:token-type:access_token"
+      }
+    },
+    {
+      "in": {
+        "subject_token": "T2"
+      },
+      "op": "auth_token_exchange_request",
+      "out": {
+        "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
+        "subject_token": "T2",
+        "subject_token_type": "urn:ietf:params:oauth:token-type:access_token"
+      }
+    },
+    {
+      "in": "fail_closed",
+      "op": "filter_resolve_failure",
+      "out": "deny"
+    },
+    {
+      "in": "fail_open",
+      "op": "filter_resolve_failure",
+      "out": "allow"
+    },
+    {
+      "in": {
+        "id": 7,
+        "reason": "blocked by dlp"
+      },
+      "op": "filter_deny_response",
+      "out": {
+        "error": {
+          "code": -32001,
+          "message": "blocked by dlp"
+        },
+        "id": 7,
+        "jsonrpc": "2.0"
+      }
+    },
+    {
+      "in": {
+        "id": "c1",
+        "reason": ""
+      },
+      "op": "filter_deny_response",
+      "out": {
+        "error": {
+          "code": -32001,
+          "message": ""
+        },
+        "id": "c1",
+        "jsonrpc": "2.0"
+      }
+    },
+    {
+      "in": {
+        "request": {
+          "id": 3,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "trace": "t1"
+            },
+            "arguments": {
+              "title": "x"
+            },
+            "name": "gh__create_issue"
+          }
+        },
+        "verdicts": [
+          {
+            "kind": "allow"
+          }
+        ]
+      },
+      "op": "filter_chain_outcome",
+      "out": {
+        "action": "forward",
+        "message": {
+          "id": 3,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "trace": "t1"
+            },
+            "arguments": {
+              "title": "x"
+            },
+            "name": "gh__create_issue"
+          }
+        }
+      }
+    },
+    {
+      "in": {
+        "request": {
+          "id": 3,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "trace": "t1"
+            },
+            "arguments": {
+              "title": "x"
+            },
+            "name": "gh__create_issue"
+          }
+        },
+        "verdicts": [
+          {
+            "kind": "annotate",
+            "provenance": {
+              "scanner": "clean"
+            }
+          }
+        ]
+      },
+      "op": "filter_chain_outcome",
+      "out": {
+        "action": "forward",
+        "message": {
+          "id": 3,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "scanner": "clean",
+              "trace": "t1"
+            },
+            "arguments": {
+              "title": "x"
+            },
+            "name": "gh__create_issue"
+          }
+        }
+      }
+    },
+    {
+      "in": {
+        "request": {
+          "id": 3,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "trace": "t1"
+            },
+            "arguments": {
+              "title": "x"
+            },
+            "name": "gh__create_issue"
+          }
+        },
+        "verdicts": [
+          {
+            "arguments": {
+              "title": "[redacted]"
+            },
+            "kind": "mutate"
+          }
+        ]
+      },
+      "op": "filter_chain_outcome",
+      "out": {
+        "action": "forward",
+        "message": {
+          "id": 3,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "trace": "t1"
+            },
+            "arguments": {
+              "title": "[redacted]"
+            },
+            "name": "gh__create_issue"
+          }
+        }
+      }
+    },
+    {
+      "in": {
+        "request": {
+          "id": 3,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "trace": "t1"
+            },
+            "arguments": {
+              "title": "x"
+            },
+            "name": "gh__create_issue"
+          }
+        },
+        "verdicts": [
+          {
+            "kind": "deny",
+            "reason": "infected"
+          }
+        ]
+      },
+      "op": "filter_chain_outcome",
+      "out": {
+        "action": "block",
+        "quarantined": false,
+        "response": {
+          "error": {
+            "code": -32001,
+            "message": "infected"
+          },
+          "id": 3,
+          "jsonrpc": "2.0"
+        }
+      }
+    },
+    {
+      "in": {
+        "request": {
+          "id": 3,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "trace": "t1"
+            },
+            "arguments": {
+              "title": "x"
+            },
+            "name": "gh__create_issue"
+          }
+        },
+        "verdicts": [
+          {
+            "kind": "quarantine",
+            "reason": "dlp hit"
+          }
+        ]
+      },
+      "op": "filter_chain_outcome",
+      "out": {
+        "action": "block",
+        "quarantined": true,
+        "response": {
+          "error": {
+            "code": -32001,
+            "message": "dlp hit"
+          },
+          "id": 3,
+          "jsonrpc": "2.0"
+        }
+      }
+    },
+    {
+      "in": {
+        "request": {
+          "id": 3,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "trace": "t1"
+            },
+            "arguments": {
+              "title": "x"
+            },
+            "name": "gh__create_issue"
+          }
+        },
+        "verdicts": [
+          {
+            "kind": "annotate",
+            "provenance": {
+              "scanner": "av"
+            }
+          },
+          {
+            "arguments": {
+              "title": "clean"
+            },
+            "kind": "mutate"
+          },
+          {
+            "kind": "allow"
+          }
+        ]
+      },
+      "op": "filter_chain_outcome",
+      "out": {
+        "action": "forward",
+        "message": {
+          "id": 3,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "scanner": "av",
+              "trace": "t1"
+            },
+            "arguments": {
+              "title": "clean"
+            },
+            "name": "gh__create_issue"
+          }
+        }
+      }
+    },
+    {
+      "in": {
+        "request": {
+          "id": 3,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "trace": "t1"
+            },
+            "arguments": {
+              "title": "x"
+            },
+            "name": "gh__create_issue"
+          }
+        },
+        "verdicts": [
+          {
+            "arguments": {
+              "title": "y"
+            },
+            "kind": "mutate"
+          },
+          {
+            "kind": "deny",
+            "reason": "second filter"
+          }
+        ]
+      },
+      "op": "filter_chain_outcome",
+      "out": {
+        "action": "block",
+        "quarantined": false,
+        "response": {
+          "error": {
+            "code": -32001,
+            "message": "second filter"
+          },
+          "id": 3,
+          "jsonrpc": "2.0"
+        }
+      }
+    },
+    {
+      "in": "68656c6c6f20776f726c64",
+      "op": "base64_encode",
+      "out": "aGVsbG8gd29ybGQ="
+    },
+    {
+      "in": "00010203",
+      "op": "base64_encode",
+      "out": "AAECAw=="
+    },
+    {
+      "in": "",
+      "op": "base64_encode",
+      "out": ""
+    },
+    {
+      "in": "89504e470d0a",
+      "op": "base64_encode",
+      "out": "iVBORw0K"
+    },
+    {
+      "in": "66",
+      "op": "base64_encode",
+      "out": "Zg=="
+    },
+    {
+      "in": "666f",
+      "op": "base64_encode",
+      "out": "Zm8="
+    },
+    {
+      "in": "aGVsbG8gd29ybGQ=",
+      "op": "base64_decode",
+      "out": "68656c6c6f20776f726c64"
+    },
+    {
+      "in": "AAECAw==",
+      "op": "base64_decode",
+      "out": "00010203"
+    },
+    {
+      "in": "Zg==",
+      "op": "base64_decode",
+      "out": "66"
+    },
+    {
+      "in": {
+        "id": 1,
+        "jsonrpc": "2.0",
+        "result": {
+          "content": [
+            {
+              "text": "hello world",
+              "type": "text"
+            },
+            {
+              "data": "iVBOR2RhdGE=",
+              "mimeType": "image/png",
+              "type": "image"
+            },
+            {
+              "mimeType": "text/plain",
+              "type": "resource_link",
+              "uri": "file:///a.txt"
+            },
+            {
+              "resource": {
+                "blob": "AAECAw==",
+                "mimeType": "application/octet-stream",
+                "uri": "file:///b.bin"
+              },
+              "type": "resource"
+            },
+            {
+              "foo": 1,
+              "type": "widget"
+            }
+          ]
+        }
+      },
+      "op": "content_blocks",
+      "out": [
+        {
+          "bytes": null,
+          "kind": "text",
+          "mime": null,
+          "path": [
+            "result",
+            "content",
+            0,
+            "text"
+          ],
+          "text": "hello world",
+          "uri": null
+        },
+        {
+          "bytes": "89504e4764617461",
+          "kind": "image",
+          "mime": "image/png",
+          "path": [
+            "result",
+            "content",
+            1,
+            "data"
+          ],
+          "text": null,
+          "uri": null
+        },
+        {
+          "bytes": null,
+          "kind": "resource_link",
+          "mime": "text/plain",
+          "path": [
+            "result",
+            "content",
+            2,
+            "uri"
+          ],
+          "text": null,
+          "uri": "file:///a.txt"
+        },
+        {
+          "bytes": "00010203",
+          "kind": "resource",
+          "mime": "application/octet-stream",
+          "path": [
+            "result",
+            "content",
+            3,
+            "resource",
+            "blob"
+          ],
+          "text": null,
+          "uri": "file:///b.bin"
+        },
+        {
+          "bytes": null,
+          "kind": "unknown",
+          "mime": null,
+          "path": [
+            "result",
+            "content",
+            4
+          ],
+          "text": null,
+          "uri": null
+        }
+      ]
+    },
+    {
+      "in": {
+        "id": 2,
+        "jsonrpc": "2.0",
+        "result": {
+          "contents": [
+            {
+              "mimeType": "text/plain",
+              "text": "doc body",
+              "uri": "file:///c.txt"
+            },
+            {
+              "blob": "AAECAw==",
+              "mimeType": "application/octet-stream",
+              "uri": "file:///d.bin"
+            }
+          ]
+        }
+      },
+      "op": "content_blocks",
+      "out": [
+        {
+          "bytes": null,
+          "kind": "resource",
+          "mime": "text/plain",
+          "path": [
+            "result",
+            "contents",
+            0,
+            "text"
+          ],
+          "text": "doc body",
+          "uri": "file:///c.txt"
+        },
+        {
+          "bytes": "00010203",
+          "kind": "resource",
+          "mime": "application/octet-stream",
+          "path": [
+            "result",
+            "contents",
+            1,
+            "blob"
+          ],
+          "text": null,
+          "uri": "file:///d.bin"
+        }
+      ]
+    },
+    {
+      "in": {
+        "id": 3,
+        "jsonrpc": "2.0",
+        "method": "tools/call",
+        "params": {
+          "name": "t"
+        }
+      },
+      "op": "content_blocks",
+      "out": []
+    },
+    {
+      "in": {
+        "message": {
+          "id": 1,
+          "jsonrpc": "2.0",
+          "result": {
+            "content": [
+              {
+                "text": "hello world",
+                "type": "text"
+              },
+              {
+                "data": "iVBOR2RhdGE=",
+                "mimeType": "image/png",
+                "type": "image"
+              },
+              {
+                "mimeType": "text/plain",
+                "type": "resource_link",
+                "uri": "file:///a.txt"
+              },
+              {
+                "resource": {
+                  "blob": "AAECAw==",
+                  "mimeType": "application/octet-stream",
+                  "uri": "file:///b.bin"
+                },
+                "type": "resource"
+              },
+              {
+                "foo": 1,
+                "type": "widget"
+              }
+            ]
+          }
+        },
+        "path": [
+          "result",
+          "content",
+          0,
+          "text"
+        ],
+        "text": "[redacted]"
+      },
+      "op": "content_set_text",
+      "out": {
+        "id": 1,
+        "jsonrpc": "2.0",
+        "result": {
+          "content": [
+            {
+              "text": "[redacted]",
+              "type": "text"
+            },
+            {
+              "data": "iVBOR2RhdGE=",
+              "mimeType": "image/png",
+              "type": "image"
+            },
+            {
+              "mimeType": "text/plain",
+              "type": "resource_link",
+              "uri": "file:///a.txt"
+            },
+            {
+              "resource": {
+                "blob": "AAECAw==",
+                "mimeType": "application/octet-stream",
+                "uri": "file:///b.bin"
+              },
+              "type": "resource"
+            },
+            {
+              "foo": 1,
+              "type": "widget"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "in": {
+        "bytes": "4e4557494d47",
+        "message": {
+          "id": 1,
+          "jsonrpc": "2.0",
+          "result": {
+            "content": [
+              {
+                "text": "hello world",
+                "type": "text"
+              },
+              {
+                "data": "iVBOR2RhdGE=",
+                "mimeType": "image/png",
+                "type": "image"
+              },
+              {
+                "mimeType": "text/plain",
+                "type": "resource_link",
+                "uri": "file:///a.txt"
+              },
+              {
+                "resource": {
+                  "blob": "AAECAw==",
+                  "mimeType": "application/octet-stream",
+                  "uri": "file:///b.bin"
+                },
+                "type": "resource"
+              },
+              {
+                "foo": 1,
+                "type": "widget"
+              }
+            ]
+          }
+        },
+        "path": [
+          "result",
+          "content",
+          1,
+          "data"
+        ]
+      },
+      "op": "content_set_bytes",
+      "out": {
+        "id": 1,
+        "jsonrpc": "2.0",
+        "result": {
+          "content": [
+            {
+              "text": "hello world",
+              "type": "text"
+            },
+            {
+              "data": "TkVXSU1H",
+              "mimeType": "image/png",
+              "type": "image"
+            },
+            {
+              "mimeType": "text/plain",
+              "type": "resource_link",
+              "uri": "file:///a.txt"
+            },
+            {
+              "resource": {
+                "blob": "AAECAw==",
+                "mimeType": "application/octet-stream",
+                "uri": "file:///b.bin"
+              },
+              "type": "resource"
+            },
+            {
+              "foo": 1,
+              "type": "widget"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "in": {
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "c2u",
+          "method": "tools/call",
+          "tool": "gh__create_issue"
+        },
+        "interest": {}
+      },
+      "op": "interest_match",
+      "out": true
+    },
+    {
+      "in": {
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "c2u",
+          "method": "tools/call",
+          "tool": "gh__create_issue"
+        },
+        "interest": {
+          "methods": [
+            "tools/call"
+          ]
+        }
+      },
+      "op": "interest_match",
+      "out": true
+    },
+    {
+      "in": {
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "c2u",
+          "method": "tools/call",
+          "tool": "gh__create_issue"
+        },
+        "interest": {
+          "methods": [
+            "resources/read"
+          ]
+        }
+      },
+      "op": "interest_match",
+      "out": false
+    },
+    {
+      "in": {
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "c2u",
+          "method": "tools/call",
+          "tool": "gh__create_issue"
+        },
+        "interest": {
+          "methods": [
+            "*"
+          ]
+        }
+      },
+      "op": "interest_match",
+      "out": true
+    },
+    {
+      "in": {
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "c2u",
+          "method": "tools/call",
+          "tool": "gh__create_issue"
+        },
+        "interest": {
+          "tools": [
+            "gh__create_issue"
+          ]
+        }
+      },
+      "op": "interest_match",
+      "out": true
+    },
+    {
+      "in": {
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "c2u",
+          "method": "tools/call",
+          "tool": "gh__create_issue"
+        },
+        "interest": {
+          "tools": [
+            "fs__read"
+          ]
+        }
+      },
+      "op": "interest_match",
+      "out": false
+    },
+    {
+      "in": {
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "c2u",
+          "method": "tools/call",
+          "tool": "gh__create_issue"
+        },
+        "interest": {
+          "directions": [
+            "c2u"
+          ]
+        }
+      },
+      "op": "interest_match",
+      "out": true
+    },
+    {
+      "in": {
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "c2u",
+          "method": "tools/call",
+          "tool": "gh__create_issue"
+        },
+        "interest": {
+          "content_types": [
+            "image/*"
+          ]
+        }
+      },
+      "op": "interest_match",
+      "out": true
+    },
+    {
+      "in": {
+        "context": {
+          "content_types": [
+            "text/plain"
+          ],
+          "direction": "c2u",
+          "method": "tools/call",
+          "tool": null
+        },
+        "interest": {
+          "content_types": [
+            "image/*"
+          ]
+        }
+      },
+      "op": "interest_match",
+      "out": false
+    },
+    {
+      "in": {
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "c2u",
+          "method": "tools/call",
+          "tool": "gh__create_issue"
+        },
+        "interest": {
+          "content_types": [
+            "application/pdf"
+          ]
+        }
+      },
+      "op": "interest_match",
+      "out": false
+    },
+    {
+      "in": {
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "c2u",
+          "method": "tools/call",
+          "tool": "gh__create_issue"
+        },
+        "interest": {
+          "content_types": [
+            "image/png"
+          ],
+          "methods": [
+            "tools/call"
+          ]
+        }
+      },
+      "op": "interest_match",
+      "out": true
+    },
+    {
+      "in": {
+        "direction": "u2c",
+        "message": {
+          "id": 1,
+          "jsonrpc": "2.0",
+          "result": {
+            "content": [
+              {
+                "text": "hello world",
+                "type": "text"
+              },
+              {
+                "data": "iVBOR2RhdGE=",
+                "mimeType": "image/png",
+                "type": "image"
+              },
+              {
+                "mimeType": "text/plain",
+                "type": "resource_link",
+                "uri": "file:///a.txt"
+              },
+              {
+                "resource": {
+                  "blob": "AAECAw==",
+                  "mimeType": "application/octet-stream",
+                  "uri": "file:///b.bin"
+                },
+                "type": "resource"
+              },
+              {
+                "foo": 1,
+                "type": "widget"
+              }
+            ]
+          }
+        }
+      },
+      "op": "message_context",
+      "out": {
+        "content_types": [
+          "application/octet-stream",
+          "image/png",
+          "text/plain"
+        ],
+        "direction": "u2c",
+        "method": null,
+        "tool": null
+      }
+    },
+    {
+      "in": {
+        "direction": "c2u",
+        "message": {
+          "id": 3,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "name": "t"
+          }
+        }
+      },
+      "op": "message_context",
+      "out": {
+        "content_types": [],
+        "direction": "c2u",
+        "method": "tools/call",
+        "tool": "t"
+      }
+    },
+    {
+      "in": {
+        "data": "74686520717569636b2062726f776e20666f78",
+        "n": 4
+      },
+      "op": "preview_slice",
+      "out": {
+        "ieof": false,
+        "preview": "74686520"
+      }
+    },
+    {
+      "in": {
+        "data": "73686f7274",
+        "n": 5
+      },
+      "op": "preview_slice",
+      "out": {
+        "ieof": true,
+        "preview": "73686f7274"
+      }
+    },
+    {
+      "in": {
+        "data": "73686f7274",
+        "n": 99
+      },
+      "op": "preview_slice",
+      "out": {
+        "ieof": true,
+        "preview": "73686f7274"
+      }
+    },
+    {
+      "in": {
+        "data": "",
+        "n": 3
+      },
+      "op": "preview_slice",
+      "out": {
+        "ieof": true,
+        "preview": ""
+      }
+    },
+    {
+      "in": {
+        "decision": "deny",
+        "ieof": false
+      },
+      "op": "preview_resolve",
+      "out": {
+        "action": "verdict",
+        "kind": "deny"
+      }
+    },
+    {
+      "in": {
+        "decision": "allow",
+        "ieof": true
+      },
+      "op": "preview_resolve",
+      "out": {
+        "action": "verdict",
+        "kind": "allow"
+      }
+    },
+    {
+      "in": {
+        "decision": "continue",
+        "ieof": true
+      },
+      "op": "preview_resolve",
+      "out": {
+        "action": "scan_full"
+      }
+    },
+    {
+      "in": {
+        "decision": "continue",
+        "ieof": false
+      },
+      "op": "preview_resolve",
+      "out": {
+        "action": "need_more"
+      }
+    },
+    {
+      "in": {
+        "content": "7363616e206d65",
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "u2c",
+          "method": "tools/call",
+          "tool": "gh__x"
+        },
+        "ieof": false,
+        "phase": "preview"
+      },
+      "op": "callout_request",
+      "out": {
+        "callout": "1",
+        "content": "c2NhbiBtZQ==",
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "u2c",
+          "method": "tools/call",
+          "tool": "gh__x"
+        },
+        "ieof": false,
+        "phase": "preview"
+      }
+    },
+    {
+      "in": {
+        "content": "",
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "u2c",
+          "method": "tools/call",
+          "tool": "gh__x"
+        },
+        "ieof": true,
+        "phase": "body"
+      },
+      "op": "callout_request",
+      "out": {
+        "callout": "1",
+        "content": "",
+        "context": {
+          "content_types": [
+            "image/png"
+          ],
+          "direction": "u2c",
+          "method": "tools/call",
+          "tool": "gh__x"
+        },
+        "ieof": true,
+        "phase": "body"
+      }
+    },
+    {
+      "in": "7363616e206d65",
+      "op": "callout_digest",
+      "out": "cdf614b868c95c1367f3407bc43f9d74f10dfc0a96b2117808eb68569d6bb568"
+    },
+    {
+      "in": "",
+      "op": "callout_digest",
+      "out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "in": "000102",
+      "op": "callout_digest",
+      "out": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+    },
+    {
+      "in": {
+        "max_bytes": 20,
+        "size": 10
+      },
+      "op": "callout_budget",
+      "out": false
+    },
+    {
+      "in": {
+        "max_bytes": 20,
+        "size": 30
+      },
+      "op": "callout_budget",
+      "out": true
+    },
+    {
+      "in": {
+        "max_bytes": 0,
+        "size": 30
+      },
+      "op": "callout_budget",
+      "out": false
+    },
+    {
+      "in": {
+        "failure_policy": "fail_closed",
+        "response": {
+          "verdict": "allow"
+        }
+      },
+      "op": "callout_parse",
+      "out": {
+        "kind": "allow"
+      }
+    },
+    {
+      "in": {
+        "failure_policy": "fail_closed",
+        "response": {
+          "reason": "infected",
+          "verdict": "deny"
+        }
+      },
+      "op": "callout_parse",
+      "out": {
+        "kind": "deny",
+        "reason": "infected"
+      }
+    },
+    {
+      "in": {
+        "failure_policy": "fail_closed",
+        "response": {
+          "reason": "dlp",
+          "verdict": "quarantine"
+        }
+      },
+      "op": "callout_parse",
+      "out": {
+        "kind": "quarantine",
+        "reason": "dlp"
+      }
+    },
+    {
+      "in": {
+        "failure_policy": "fail_closed",
+        "response": {
+          "content": "Y2xlYW5lZA==",
+          "verdict": "mutate"
+        }
+      },
+      "op": "callout_parse",
+      "out": {
+        "bytes": "636c65616e6564",
+        "kind": "mutate"
+      }
+    },
+    {
+      "in": {
+        "failure_policy": "fail_closed",
+        "response": {
+          "verdict": "mutate"
+        }
+      },
+      "op": "callout_parse",
+      "out": {
+        "bytes": null,
+        "kind": "mutate"
+      }
+    },
+    {
+      "in": {
+        "failure_policy": "fail_closed",
+        "response": {
+          "content": "!!!not-base64",
+          "verdict": "mutate"
+        }
+      },
+      "op": "callout_parse",
+      "out": {
+        "bytes": null,
+        "kind": "mutate"
+      }
+    },
+    {
+      "in": {
+        "failure_policy": "fail_closed",
+        "response": {
+          "content": "Y2xlYW5lZA==",
+          "provenance": {
+            "icap": "modified"
+          },
+          "verdict": "mutate"
+        }
+      },
+      "op": "callout_parse",
+      "out": {
+        "bytes": "636c65616e6564",
+        "kind": "mutate",
+        "provenance": {
+          "icap": "modified"
+        }
+      }
+    },
+    {
+      "in": {
+        "failure_policy": "fail_closed",
+        "response": {
+          "provenance": {
+            "scanner": "av"
+          },
+          "verdict": "annotate"
+        }
+      },
+      "op": "callout_parse",
+      "out": {
+        "kind": "annotate",
+        "provenance": {
+          "scanner": "av"
+        }
+      }
+    },
+    {
+      "in": {
+        "failure_policy": "fail_closed",
+        "response": {
+          "verdict": "continue"
+        }
+      },
+      "op": "callout_parse",
+      "out": {
+        "kind": "continue"
+      }
+    },
+    {
+      "in": {
+        "failure_policy": "fail_closed",
+        "response": {
+          "nonsense": 1
+        }
+      },
+      "op": "callout_parse",
+      "out": {
+        "kind": "deny",
+        "reason": "malformed callout response"
+      }
+    },
+    {
+      "in": {
+        "failure_policy": "fail_open",
+        "response": {
+          "nonsense": 1
+        }
+      },
+      "op": "callout_parse",
+      "out": {
+        "kind": "allow",
+        "reason": "malformed callout response"
+      }
+    },
+    {
+      "in": {
+        "failure_policy": "fail_closed",
+        "response": {
+          "verdict": "bogus"
+        }
+      },
+      "op": "callout_parse",
+      "out": {
+        "kind": "deny",
+        "reason": "malformed callout response"
+      }
+    },
+    {
+      "in": "c2u",
+      "op": "icap_mode",
+      "out": "REQMOD"
+    },
+    {
+      "in": "u2c",
+      "op": "icap_mode",
+      "out": "RESPMOD"
+    },
+    {
+      "in": {
+        "status": 204
+      },
+      "op": "icap_to_callout",
+      "out": {
+        "verdict": "allow"
+      }
+    },
+    {
+      "in": {
+        "istag": "av-1",
+        "modified": "Y2xlYW5lZA==",
+        "status": 200
+      },
+      "op": "icap_to_callout",
+      "out": {
+        "content": "Y2xlYW5lZA==",
+        "provenance": {
+          "icap": "modified",
+          "istag": "av-1"
+        },
+        "verdict": "mutate"
+      }
+    },
+    {
+      "in": {
+        "status": 200
+      },
+      "op": "icap_to_callout",
+      "out": {
+        "verdict": "allow"
+      }
+    },
+    {
+      "in": {
+        "status": 403
+      },
+      "op": "icap_to_callout",
+      "out": {
+        "reason": "ICAP policy blocked",
+        "verdict": "deny"
+      }
+    },
+    {
+      "in": {
+        "status": 200,
+        "threat": "eicar"
+      },
+      "op": "icap_to_callout",
+      "out": {
+        "reason": "eicar",
+        "verdict": "quarantine"
+      }
+    },
+    {
+      "in": {
+        "status": 500
+      },
+      "op": "icap_to_callout",
+      "out": {
+        "reason": "unexpected ICAP status",
+        "verdict": "deny"
+      }
+    },
+    {
+      "in": {
+        "enabled": true,
+        "kind": "resource_link"
+      },
+      "op": "icap_should_deref",
+      "out": true
+    },
+    {
+      "in": {
+        "enabled": false,
+        "kind": "resource_link"
+      },
+      "op": "icap_should_deref",
+      "out": false
+    },
+    {
+      "in": {
+        "enabled": true,
+        "kind": "image"
+      },
+      "op": "icap_should_deref",
+      "out": false
+    },
+    {
+      "in": {
+        "cache_scope": "public",
+        "ttl_ms": 300000
+      },
+      "op": "server_list_directives",
+      "out": {
+        "cacheScope": "public",
+        "ttlMs": 300000
+      }
+    },
+    {
+      "in": {
+        "cache_scope": "private",
+        "ttl_ms": 0
+      },
+      "op": "server_list_directives",
+      "out": {
+        "cacheScope": "private",
+        "ttlMs": 0
+      }
+    },
+    {
+      "in": {
+        "cache_scope": "public",
+        "result": {
+          "tools": [
+            {
+              "name": "gh__x"
+            }
+          ]
+        },
+        "ttl_ms": 60000
+      },
+      "op": "server_attach_directives",
+      "out": {
+        "cacheScope": "public",
+        "tools": [
+          {
+            "name": "gh__x"
+          }
+        ],
+        "ttlMs": 60000
+      }
+    },
+    {
+      "in": {
+        "schema": {
+          "properties": {
+            "n": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "n"
+          ],
+          "type": "object"
+        },
+        "value": {
+          "n": 1
+        }
+      },
+      "op": "schema_validate",
+      "out": true
+    },
+    {
+      "in": {
+        "schema": {
+          "properties": {
+            "n": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "n"
+          ],
+          "type": "object"
+        },
+        "value": {}
+      },
+      "op": "schema_validate",
+      "out": false
+    },
+    {
+      "in": {
+        "schema": {
+          "properties": {
+            "n": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "n"
+          ],
+          "type": "object"
+        },
+        "value": {
+          "n": "x"
+        }
+      },
+      "op": "schema_validate",
+      "out": false
+    },
+    {
+      "in": {
+        "schema": {
+          "type": "object"
+        },
+        "value": {
+          "anything": 1
+        }
+      },
+      "op": "schema_validate",
+      "out": true
+    },
+    {
+      "in": {
+        "schema": {
+          "enum": [
+            "a",
+            "b"
+          ],
+          "type": "string"
+        },
+        "value": "a"
+      },
+      "op": "schema_validate",
+      "out": true
+    },
+    {
+      "in": {
+        "schema": {
+          "enum": [
+            "a",
+            "b"
+          ],
+          "type": "string"
+        },
+        "value": "c"
+      },
+      "op": "schema_validate",
+      "out": false
+    },
+    {
+      "in": {
+        "schema": {
+          "minimum": 10,
+          "type": "integer"
+        },
+        "value": 12
+      },
+      "op": "schema_validate",
+      "out": true
+    },
+    {
+      "in": {
+        "schema": {
+          "minimum": 10,
+          "type": "integer"
+        },
+        "value": 4
+      },
+      "op": "schema_validate",
+      "out": false
+    },
+    {
+      "in": {
+        "schema": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "value": [
+          1,
+          2,
+          3
+        ]
+      },
+      "op": "schema_validate",
+      "out": true
+    },
+    {
+      "in": {
+        "schema": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "value": [
+          1,
+          "two"
+        ]
+      },
+      "op": "schema_validate",
+      "out": false
+    },
+    {
+      "in": {
+        "schema": {
+          "type": "not-a-type"
+        },
+        "value": {}
+      },
+      "op": "schema_validate",
+      "out": false
+    },
+    {
+      "in": -32602,
+      "op": "error_reason",
+      "out": "Invalid Params"
+    },
+    {
+      "in": -32603,
+      "op": "error_reason",
+      "out": "Internal Error"
+    },
+    {
+      "in": -32002,
+      "op": "error_reason",
+      "out": "Unauthorized"
+    },
+    {
+      "in": -32000,
+      "op": "error_reason",
+      "out": "No Session"
+    },
+    {
+      "in": -31234,
+      "op": "error_reason",
+      "out": ""
+    },
+    {
+      "in": {
+        "code": -32602,
+        "detail": "input schema validation failed"
+      },
+      "op": "error_object",
+      "out": {
+        "code": -32602,
+        "data": {
+          "detail": "input schema validation failed",
+          "errorId": "E4002"
+        },
+        "message": "Invalid Params"
+      }
+    },
+    {
+      "in": {
+        "code": -32603,
+        "detail": "output schema validation failed"
+      },
+      "op": "error_object",
+      "out": {
+        "code": -32603,
+        "data": {
+          "detail": "output schema validation failed",
+          "errorId": "E5000"
+        },
+        "message": "Internal Error"
+      }
+    },
+    {
+      "in": {
+        "code": -32002
+      },
+      "op": "error_object",
+      "out": {
+        "code": -32002,
+        "data": {
+          "errorId": "E4010"
+        },
+        "message": "Unauthorized"
+      }
+    },
+    {
+      "in": {
+        "code": -31234
+      },
+      "op": "error_object",
+      "out": {
+        "code": -31234,
+        "data": {
+          "errorId": ""
+        },
+        "message": ""
+      }
+    },
+    {
+      "in": -32600,
+      "op": "error_describe",
+      "out": {
+        "cause": "The message is not a well-formed JSON-RPC request object.",
+        "code": -32600,
+        "docsUrl": "ERRORS.md#e4000",
+        "errorId": "E4000",
+        "hint": "Send a JSON-RPC 2.0 request carrying jsonrpc, method, and id.",
+        "reason": "Invalid Request"
+      }
+    },
+    {
+      "in": -32602,
+      "op": "error_describe",
+      "out": {
+        "cause": "The request's params do not match the method's expected shape.",
+        "code": -32602,
+        "docsUrl": "ERRORS.md#e4002",
+        "errorId": "E4002",
+        "hint": "Check the tool's inputSchema and correct the arguments.",
+        "reason": "Invalid Params"
+      }
+    },
+    {
+      "in": -32601,
+      "op": "error_describe",
+      "out": {
+        "cause": "The requested method or namespaced tool is exposed by no backend or handler.",
+        "code": -32601,
+        "docsUrl": "ERRORS.md#e4004",
+        "errorId": "E4004",
+        "hint": "List the available tools and call one of the exposed names.",
+        "reason": "Method Not Found"
+      }
+    },
+    {
+      "in": -32002,
+      "op": "error_describe",
+      "out": {
+        "cause": "The client's token failed issuer or audience validation, or none was presented.",
+        "code": -32002,
+        "docsUrl": "ERRORS.md#e4010",
+        "errorId": "E4010",
+        "hint": "Present a token whose iss and aud match the proxy's configured values.",
+        "reason": "Unauthorized"
+      }
+    },
+    {
+      "in": -32001,
+      "op": "error_describe",
+      "out": {
+        "cause": "A policy rule or extension filter denied the request.",
+        "code": -32001,
+        "docsUrl": "ERRORS.md#e4030",
+        "errorId": "E4030",
+        "hint": "Review the active policy and filter chain, then adjust the rule or the request.",
+        "reason": "Policy Denied"
+      }
+    },
+    {
+      "in": -32000,
+      "op": "error_describe",
+      "out": {
+        "cause": "The request referenced a session that is missing or has expired.",
+        "code": -32000,
+        "docsUrl": "ERRORS.md#e4400",
+        "errorId": "E4400",
+        "hint": "Reinitialize to obtain a session before sending session-scoped requests.",
+        "reason": "No Session"
+      }
+    },
+    {
+      "in": -32004,
+      "op": "error_describe",
+      "out": {
+        "cause": "The declared protocol version is not in the proxy's supported set.",
+        "code": -32004,
+        "docsUrl": "ERRORS.md#e4260",
+        "errorId": "E4260",
+        "hint": "Negotiate one of the supported versions named in the error data.",
+        "reason": "Unsupported Protocol Version"
+      }
+    },
+    {
+      "in": -32005,
+      "op": "error_describe",
+      "out": {
+        "cause": "A transport routing header disagrees with the request body.",
+        "code": -32005,
+        "docsUrl": "ERRORS.md#e4006",
+        "errorId": "E4006",
+        "hint": "Make Mcp-Method and Mcp-Name agree with the body, or omit them.",
+        "reason": "Header Mismatch"
+      }
+    },
+    {
+      "in": -32603,
+      "op": "error_describe",
+      "out": {
+        "cause": "The proxy or a local handler failed while processing the request.",
+        "code": -32603,
+        "docsUrl": "ERRORS.md#e5000",
+        "errorId": "E5000",
+        "hint": "Retry; if it persists, check the server logs and report the error id.",
+        "reason": "Internal Error"
+      }
+    },
+    {
+      "in": -32003,
+      "op": "error_describe",
+      "out": {
+        "cause": "The target backend is unavailable or its circuit breaker is open.",
+        "code": -32003,
+        "docsUrl": "ERRORS.md#e5030",
+        "errorId": "E5030",
+        "hint": "Wait for the backend to recover; the proxy resumes once it is healthy.",
+        "reason": "Server Not Available"
+      }
+    },
+    {
+      "in": {
+        "cap": 0,
+        "in_flight": 0
+      },
+      "op": "pool_admit",
+      "out": true
+    },
+    {
+      "in": {
+        "cap": 0,
+        "in_flight": 3
+      },
+      "op": "pool_admit",
+      "out": true
+    },
+    {
+      "in": {
+        "cap": 1,
+        "in_flight": 0
+      },
+      "op": "pool_admit",
+      "out": true
+    },
+    {
+      "in": {
+        "cap": 1,
+        "in_flight": 1
+      },
+      "op": "pool_admit",
+      "out": false
+    },
+    {
+      "in": {
+        "cap": 4,
+        "in_flight": 2
+      },
+      "op": "pool_admit",
+      "out": true
+    },
+    {
+      "in": {
+        "cap": 4,
+        "in_flight": 4
+      },
+      "op": "pool_admit",
+      "out": false
+    },
+    {
+      "in": {
+        "cap": 4,
+        "in_flight": 5
+      },
+      "op": "pool_admit",
+      "out": false
+    },
+    {
+      "in": {
+        "idle_ms": 0,
+        "now_ms": 1000
+      },
+      "op": "pool_deadline",
+      "out": 0
+    },
+    {
+      "in": {
+        "idle_ms": 5000,
+        "now_ms": 1000
+      },
+      "op": "pool_deadline",
+      "out": 6000
+    },
+    {
+      "in": {
+        "idle_ms": 1,
+        "now_ms": 0
+      },
+      "op": "pool_deadline",
+      "out": 1
+    },
+    {
+      "in": {
+        "deadline_ms": 0,
+        "now_ms": 9999
+      },
+      "op": "pool_expired",
+      "out": false
+    },
+    {
+      "in": {
+        "deadline_ms": 6000,
+        "now_ms": 5999
+      },
+      "op": "pool_expired",
+      "out": false
+    },
+    {
+      "in": {
+        "deadline_ms": 6000,
+        "now_ms": 6000
+      },
+      "op": "pool_expired",
+      "out": true
+    },
+    {
+      "in": {
+        "deadline_ms": 6000,
+        "now_ms": 6001
+      },
+      "op": "pool_expired",
+      "out": true
+    },
+    {
+      "in": {
+        "method": "notifications/cancelled",
+        "params": {
+          "requestId": "c-7"
+        }
+      },
+      "op": "pool_cancel_id",
+      "out": "c-7"
+    },
+    {
+      "in": {
+        "method": "notifications/cancelled",
+        "params": {
+          "requestId": 42
+        }
+      },
+      "op": "pool_cancel_id",
+      "out": 42
+    },
+    {
+      "in": {
+        "method": "notifications/cancelled",
+        "params": {}
+      },
+      "op": "pool_cancel_id",
+      "out": null
+    },
+    {
+      "in": {
+        "method": "notifications/progress",
+        "params": {
+          "requestId": "c-7"
+        }
+      },
+      "op": "pool_cancel_id",
+      "out": null
+    },
+    {
+      "in": {
+        "method": "notifications/progress",
+        "params": {
+          "progress": 5,
+          "progressToken": "t-3"
+        }
+      },
+      "op": "pool_progress_token",
+      "out": "t-3"
+    },
+    {
+      "in": {
+        "method": "notifications/progress",
+        "params": {
+          "progress": 5
+        }
+      },
+      "op": "pool_progress_token",
+      "out": null
+    },
+    {
+      "in": {
+        "method": "notifications/cancelled",
+        "params": {
+          "progressToken": "t-3"
+        }
+      },
+      "op": "pool_progress_token",
+      "out": null
+    },
+    {
+      "in": {
+        "_meta": {
+          "io.modelcontextprotocol/task": {}
+        }
+      },
+      "op": "task_augmented",
+      "out": true
+    },
+    {
+      "in": {
+        "_meta": {
+          "io.modelcontextprotocol/task": {
+            "ttl": 30
+          }
+        }
+      },
+      "op": "task_augmented",
+      "out": true
+    },
+    {
+      "in": {
+        "_meta": {
+          "other": 1
+        }
+      },
+      "op": "task_augmented",
+      "out": false
+    },
+    {
+      "in": {
+        "_meta": {}
+      },
+      "op": "task_augmented",
+      "out": false
+    },
+    {
+      "in": {},
+      "op": "task_augmented",
+      "out": false
+    },
+    {
+      "in": 1,
+      "op": "task_new_id",
+      "out": "task-1"
+    },
+    {
+      "in": 2,
+      "op": "task_new_id",
+      "out": "task-2"
+    },
+    {
+      "in": 42,
+      "op": "task_new_id",
+      "out": "task-42"
+    },
+    {
+      "in": {
+        "status": "working",
+        "task_id": "task-1"
+      },
+      "op": "task_handle",
+      "out": {
+        "resultType": "task",
+        "status": "working",
+        "taskId": "task-1"
+      }
+    },
+    {
+      "in": {
+        "result": {
+          "content": [
+            {
+              "text": "ok",
+              "type": "text"
+            }
+          ]
+        },
+        "status": "completed",
+        "task_id": "task-2"
+      },
+      "op": "task_handle",
+      "out": {
+        "result": {
+          "content": [
+            {
+              "text": "ok",
+              "type": "text"
+            }
+          ]
+        },
+        "resultType": "task",
+        "status": "completed",
+        "taskId": "task-2"
+      }
+    },
+    {
+      "in": {
+        "error": {
+          "code": -32603,
+          "data": {
+            "detail": "task execution failed",
+            "errorId": "E5000"
+          },
+          "message": "Internal Error"
+        },
+        "status": "failed",
+        "task_id": "task-3"
+      },
+      "op": "task_handle",
+      "out": {
+        "error": {
+          "code": -32603,
+          "data": {
+            "detail": "task execution failed",
+            "errorId": "E5000"
+          },
+          "message": "Internal Error"
+        },
+        "resultType": "task",
+        "status": "failed",
+        "taskId": "task-3"
+      }
+    },
+    {
+      "in": {
+        "status": "cancelled",
+        "task_id": "task-4"
+      },
+      "op": "task_handle",
+      "out": {
+        "resultType": "task",
+        "status": "cancelled",
+        "taskId": "task-4"
+      }
+    },
+    {
+      "in": "file:///reports/q3.md",
+      "op": "subscription_updated",
+      "out": {
+        "jsonrpc": "2.0",
+        "method": "notifications/resources/updated",
+        "params": {
+          "uri": "file:///reports/q3.md"
+        }
+      }
+    },
+    {
+      "in": "https://ex.com/p",
+      "op": "subscription_updated",
+      "out": {
+        "jsonrpc": "2.0",
+        "method": "notifications/resources/updated",
+        "params": {
+          "uri": "https://ex.com/p"
+        }
+      }
+    },
+    {
+      "in": "scheme://auth",
+      "op": "subscription_updated",
+      "out": {
+        "jsonrpc": "2.0",
+        "method": "notifications/resources/updated",
+        "params": {
+          "uri": "scheme://auth"
+        }
+      }
+    },
+    {
+      "in": {
+        "backend_id": "docs",
+        "message": {
+          "jsonrpc": "2.0",
+          "method": "notifications/resources/updated",
+          "params": {
+            "uri": "file:///reports/q3.md"
+          }
+        }
+      },
+      "op": "subscription_namespace_updated",
+      "out": {
+        "jsonrpc": "2.0",
+        "method": "notifications/resources/updated",
+        "params": {
+          "uri": "file:///docs/reports/q3.md"
+        }
+      }
+    },
+    {
+      "in": {
+        "backend_id": "docs",
+        "message": {
+          "jsonrpc": "2.0",
+          "method": "notifications/resources/updated",
+          "params": {
+            "uri": "scheme://auth"
+          }
+        }
+      },
+      "op": "subscription_namespace_updated",
+      "out": {
+        "jsonrpc": "2.0",
+        "method": "notifications/resources/updated",
+        "params": {
+          "uri": "scheme://auth/docs"
+        }
+      }
+    },
+    {
+      "in": {
+        "backend_id": "docs",
+        "message": {
+          "jsonrpc": "2.0",
+          "method": "notifications/resources/updated",
+          "params": {
+            "other": 1
+          }
+        }
+      },
+      "op": "subscription_namespace_updated",
+      "out": {
+        "jsonrpc": "2.0",
+        "method": "notifications/resources/updated",
+        "params": {
+          "other": 1
+        }
+      }
+    },
+    {
+      "in": {
+        "max_bytes": 1000,
+        "result": {
+          "content": [
+            {
+              "text": "ok",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "op": "server_output_cap",
+      "out": false
+    },
+    {
+      "in": {
+        "max_bytes": 10,
+        "result": {
+          "content": [
+            {
+              "text": "ok",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "op": "server_output_cap",
+      "out": true
+    },
+    {
+      "in": {
+        "max_bytes": 64,
+        "result": {
+          "content": [
+            {
+              "text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "op": "server_output_cap",
+      "out": true
+    },
+    {
+      "in": {
+        "max_bytes": 0,
+        "result": {
+          "a": 1
+        }
+      },
+      "op": "server_output_cap",
+      "out": false
+    },
+    {
+      "in": {
+        "protocol_version": "2025-06-18",
+        "tools": [
+          {
+            "inputSchema": {
+              "type": "object"
+            },
+            "name": "srv__do"
+          }
+        ]
+      },
+      "op": "doctor_check",
+      "out": []
+    },
+    {
+      "in": {
+        "protocol_version": "2025-06-18",
+        "tools": []
+      },
+      "op": "doctor_check",
+      "out": [
+        {
+          "code": "no-tools",
+          "level": "warning",
+          "message": "server exposes no tools"
+        }
+      ]
+    },
+    {
+      "in": {
+        "protocol_version": "2020-01-01",
+        "tools": [
+          {
+            "inputSchema": {
+              "type": "object"
+            },
+            "name": "srv__do"
+          }
+        ]
+      },
+      "op": "doctor_check",
+      "out": [
+        {
+          "code": "unsupported-protocol-version",
+          "level": "error",
+          "message": "advertised protocol version '2020-01-01' is not in the supported set ['2026-07-28', '2025-06-18']"
+        }
+      ]
+    },
+    {
+      "in": {
+        "protocol_version": "2025-06-18",
+        "tools": [
+          {
+            "inputSchema": {
+              "type": "object"
+            },
+            "name": "srv__do"
+          },
+          {
+            "inputSchema": {
+              "type": "object"
+            },
+            "name": "srv__do"
+          }
+        ]
+      },
+      "op": "doctor_check",
+      "out": [
+        {
+          "code": "duplicate-tool",
+          "level": "error",
+          "message": "tool name 'srv__do' is exposed more than once"
+        }
+      ]
+    },
+    {
+      "in": {
+        "protocol_version": "2025-06-18",
+        "tools": [
+          {
+            "name": "srv__x"
+          }
+        ]
+      },
+      "op": "doctor_check",
+      "out": [
+        {
+          "code": "missing-input-schema",
+          "level": "warning",
+          "message": "tool 'srv__x' has no object inputSchema"
+        }
+      ]
+    },
+    {
+      "in": {
+        "protocol_version": "2025-06-18",
+        "tools": [
+          {
+            "inputSchema": {
+              "type": "object"
+            }
+          }
+        ]
+      },
+      "op": "doctor_check",
+      "out": [
+        {
+          "code": "unnamed-tool",
+          "level": "error",
+          "message": "a tool has no name"
+        }
+      ]
+    },
+    {
+      "in": {
+        "findings": [],
+        "mode": "default"
+      },
+      "op": "doctor_render",
+      "out": {
+        "ok": true,
+        "text": "config ok"
+      }
+    },
+    {
+      "in": {
+        "findings": [],
+        "mode": "strict"
+      },
+      "op": "doctor_render",
+      "out": {
+        "ok": true,
+        "text": "config ok"
+      }
+    },
+    {
+      "in": {
+        "findings": [],
+        "mode": "lenient"
+      },
+      "op": "doctor_render",
+      "out": {
+        "ok": true,
+        "text": "config ok"
+      }
+    },
+    {
+      "in": {
+        "findings": [
+          {
+            "code": "no-tools",
+            "level": "warning",
+            "message": "server exposes no tools"
+          }
+        ],
+        "mode": "default"
+      },
+      "op": "doctor_render",
+      "out": {
+        "ok": true,
+        "text": "warning: [no-tools] server exposes no tools\nconfig ok"
+      }
+    },
+    {
+      "in": {
+        "findings": [
+          {
+            "code": "no-tools",
+            "level": "warning",
+            "message": "server exposes no tools"
+          }
+        ],
+        "mode": "strict"
+      },
+      "op": "doctor_render",
+      "out": {
+        "ok": false,
+        "text": "warning: [no-tools] server exposes no tools\nconfig invalid"
+      }
+    },
+    {
+      "in": {
+        "findings": [
+          {
+            "code": "no-tools",
+            "level": "warning",
+            "message": "server exposes no tools"
+          }
+        ],
+        "mode": "lenient"
+      },
+      "op": "doctor_render",
+      "out": {
+        "ok": true,
+        "text": "warning: [no-tools] server exposes no tools\nconfig ok"
+      }
+    },
+    {
+      "in": {
+        "findings": [
+          {
+            "code": "unnamed-tool",
+            "level": "error",
+            "message": "a tool has no name"
+          },
+          {
+            "code": "missing-input-schema",
+            "level": "warning",
+            "message": "tool 'srv__x' has no object inputSchema"
+          }
+        ],
+        "mode": "default"
+      },
+      "op": "doctor_render",
+      "out": {
+        "ok": false,
+        "text": "error: [unnamed-tool] a tool has no name\nwarning: [missing-input-schema] tool 'srv__x' has no object inputSchema\nconfig invalid"
+      }
+    },
+    {
+      "in": {
+        "findings": [
+          {
+            "code": "unnamed-tool",
+            "level": "error",
+            "message": "a tool has no name"
+          },
+          {
+            "code": "missing-input-schema",
+            "level": "warning",
+            "message": "tool 'srv__x' has no object inputSchema"
+          }
+        ],
+        "mode": "strict"
+      },
+      "op": "doctor_render",
+      "out": {
+        "ok": false,
+        "text": "error: [unnamed-tool] a tool has no name\nwarning: [missing-input-schema] tool 'srv__x' has no object inputSchema\nconfig invalid"
+      }
+    },
+    {
+      "in": {
+        "findings": [
+          {
+            "code": "unnamed-tool",
+            "level": "error",
+            "message": "a tool has no name"
+          },
+          {
+            "code": "missing-input-schema",
+            "level": "warning",
+            "message": "tool 'srv__x' has no object inputSchema"
+          }
+        ],
+        "mode": "lenient"
+      },
+      "op": "doctor_render",
+      "out": {
+        "ok": true,
+        "text": "error: [unnamed-tool] a tool has no name\nwarning: [missing-input-schema] tool 'srv__x' has no object inputSchema\nconfig ok"
+      }
+    },
+    {
+      "in": {
+        "backend_ids": [],
+        "sessions": 0
+      },
+      "op": "status_snapshot",
+      "out": {
+        "backends": [],
+        "name": "yamp",
+        "protocolVersions": [
+          "2026-07-28",
+          "2025-06-18"
+        ],
+        "role": "intermediary",
+        "sessions": 0,
+        "status": "ok",
+        "version": "0.0.0"
+      }
+    },
+    {
+      "in": {
+        "backend_ids": [
+          "b0"
+        ],
+        "sessions": 1
+      },
+      "op": "status_snapshot",
+      "out": {
+        "backends": [
+          {
+            "id": "b0"
+          }
+        ],
+        "name": "yamp",
+        "protocolVersions": [
+          "2026-07-28",
+          "2025-06-18"
+        ],
+        "role": "intermediary",
+        "sessions": 1,
+        "status": "ok",
+        "version": "0.0.0"
+      }
+    },
+    {
+      "in": {
+        "backend_ids": [
+          "b0",
+          "b1"
+        ],
+        "sessions": 7
+      },
+      "op": "status_snapshot",
+      "out": {
+        "backends": [
+          {
+            "id": "b0"
+          },
+          {
+            "id": "b1"
+          }
+        ],
+        "name": "yamp",
+        "protocolVersions": [
+          "2026-07-28",
+          "2025-06-18"
+        ],
+        "role": "intermediary",
+        "sessions": 7,
+        "status": "ok",
+        "version": "0.0.0"
+      }
+    },
+    {
+      "in": {
+        "key": "resilience.failureThreshold",
+        "raw": {}
+      },
+      "op": "config_explain",
+      "out": {
+        "key": "resilience.failureThreshold",
+        "source": "default",
+        "value": 5
+      }
+    },
+    {
+      "in": {
+        "key": "resilience.failureThreshold",
+        "raw": {
+          "resilience": {
+            "failureThreshold": 9
+          }
+        }
+      },
+      "op": "config_explain",
+      "out": {
+        "key": "resilience.failureThreshold",
+        "source": "config",
+        "value": 9
+      }
+    },
+    {
+      "in": {
+        "key": "listen",
+        "raw": {
+          "listen": "127.0.0.1:9100"
+        }
+      },
+      "op": "config_explain",
+      "out": {
+        "key": "listen",
+        "source": "config",
+        "value": "127.0.0.1:9100"
+      }
+    },
+    {
+      "in": {
+        "key": "namespacing.strategy",
+        "raw": {}
+      },
+      "op": "config_explain",
+      "out": {
+        "key": "namespacing.strategy",
+        "source": "default",
+        "value": "prefix"
+      }
+    },
+    {
+      "in": {
+        "key": "resilience.resetTimeout",
+        "raw": {
+          "resilience": {
+            "resetTimeout": 45.0
+          }
+        }
+      },
+      "op": "config_explain",
+      "out": {
+        "key": "resilience.resetTimeout",
+        "source": "config",
+        "value": 45.0
+      }
+    },
+    {
+      "in": {
+        "key": "resilience.resetTimeout",
+        "raw": {}
+      },
+      "op": "config_explain",
+      "out": {
+        "key": "resilience.resetTimeout",
+        "source": "default",
+        "value": 30.0
+      }
+    },
+    {
+      "in": {
+        "key": "auth.clientTokens",
+        "raw": {}
+      },
+      "op": "config_explain",
+      "out": {
+        "key": "auth.clientTokens",
+        "source": "default",
+        "value": []
+      }
+    },
+    {
+      "in": {
+        "key": "resilience.failureThreshold",
+        "raw": {
+          "resilience": "nope"
+        }
+      },
+      "op": "config_explain",
+      "out": {
+        "key": "resilience.failureThreshold",
+        "source": "default",
+        "value": 5
+      }
+    },
+    {
+      "in": {
+        "key": "bogus.key",
+        "raw": {}
+      },
+      "op": "config_explain",
+      "out": {
+        "key": "bogus.key",
+        "source": "unknown",
+        "value": null
+      }
+    },
+    {
+      "in": {
+        "key": "resilience.failureThreshold",
+        "source": "default",
+        "value": 5
+      },
+      "op": "config_explain_line",
+      "out": "resilience.failureThreshold = 5 (default)"
+    },
+    {
+      "in": {
+        "key": "resilience.failureThreshold",
+        "source": "config",
+        "value": 9
+      },
+      "op": "config_explain_line",
+      "out": "resilience.failureThreshold = 9 (config)"
+    },
+    {
+      "in": {
+        "key": "listen",
+        "source": "config",
+        "value": "127.0.0.1:9100"
+      },
+      "op": "config_explain_line",
+      "out": "listen = \"127.0.0.1:9100\" (config)"
+    },
+    {
+      "in": {
+        "key": "namespacing.strategy",
+        "source": "default",
+        "value": "prefix"
+      },
+      "op": "config_explain_line",
+      "out": "namespacing.strategy = \"prefix\" (default)"
+    },
+    {
+      "in": {
+        "key": "resilience.resetTimeout",
+        "source": "config",
+        "value": 45.0
+      },
+      "op": "config_explain_line",
+      "out": "resilience.resetTimeout = 45.0 (config)"
+    },
+    {
+      "in": {
+        "key": "resilience.resetTimeout",
+        "source": "default",
+        "value": 30.0
+      },
+      "op": "config_explain_line",
+      "out": "resilience.resetTimeout = 30.0 (default)"
+    },
+    {
+      "in": {
+        "key": "auth.clientTokens",
+        "source": "default",
+        "value": []
+      },
+      "op": "config_explain_line",
+      "out": "auth.clientTokens = [] (default)"
+    },
+    {
+      "in": {
+        "key": "resilience.failureThreshold",
+        "source": "default",
+        "value": 5
+      },
+      "op": "config_explain_line",
+      "out": "resilience.failureThreshold = 5 (default)"
+    },
+    {
+      "in": {
+        "key": "bogus.key",
+        "source": "unknown",
+        "value": null
+      },
+      "op": "config_explain_line",
+      "out": "bogus.key = null (unknown)"
+    },
+    {
+      "in": {
+        "raw": {}
+      },
+      "op": "config_effective",
+      "out": [
+        {
+          "key": "listen",
+          "source": "default",
+          "value": null
+        },
+        {
+          "key": "resilience.failureThreshold",
+          "source": "default",
+          "value": 5
+        },
+        {
+          "key": "resilience.resetTimeout",
+          "source": "default",
+          "value": 30.0
+        },
+        {
+          "key": "resilience.healthInterval",
+          "source": "default",
+          "value": null
+        },
+        {
+          "key": "resilience.requestTimeout",
+          "source": "default",
+          "value": null
+        },
+        {
+          "key": "resilience.enabled",
+          "source": "default",
+          "value": null
+        },
+        {
+          "key": "namespacing.strategy",
+          "source": "default",
+          "value": "prefix"
+        },
+        {
+          "key": "auth.clientTokens",
+          "source": "default",
+          "value": []
+        },
+        {
+          "key": "handlers.metaTools",
+          "source": "default",
+          "value": false
+        },
+        {
+          "key": "audit.secret",
+          "source": "default",
+          "value": null
+        }
+      ]
+    },
+    {
+      "in": {
+        "raw": {
+          "handlers": {
+            "metaTools": true
+          },
+          "listen": "a:1",
+          "resilience": {
+            "resetTimeout": 45.0
+          }
+        }
+      },
+      "op": "config_effective",
+      "out": [
+        {
+          "key": "listen",
+          "source": "config",
+          "value": "a:1"
+        },
+        {
+          "key": "resilience.failureThreshold",
+          "source": "default",
+          "value": 5
+        },
+        {
+          "key": "resilience.resetTimeout",
+          "source": "config",
+          "value": 45.0
+        },
+        {
+          "key": "resilience.healthInterval",
+          "source": "default",
+          "value": null
+        },
+        {
+          "key": "resilience.requestTimeout",
+          "source": "default",
+          "value": null
+        },
+        {
+          "key": "resilience.enabled",
+          "source": "default",
+          "value": null
+        },
+        {
+          "key": "namespacing.strategy",
+          "source": "default",
+          "value": "prefix"
+        },
+        {
+          "key": "auth.clientTokens",
+          "source": "default",
+          "value": []
+        },
+        {
+          "key": "handlers.metaTools",
+          "source": "config",
+          "value": true
+        },
+        {
+          "key": "audit.secret",
+          "source": "default",
+          "value": null
+        }
+      ]
+    },
+    {
+      "in": {
+        "left": {},
+        "right": {}
+      },
+      "op": "config_diff",
+      "out": []
+    },
+    {
+      "in": {
+        "left": {
+          "listen": "a:1"
+        },
+        "right": {
+          "listen": "b:2"
+        }
+      },
+      "op": "config_diff",
+      "out": [
+        {
+          "key": "listen",
+          "left": {
+            "source": "config",
+            "value": "a:1"
+          },
+          "right": {
+            "source": "config",
+            "value": "b:2"
+          }
+        }
+      ]
+    },
+    {
+      "in": {
+        "left": {},
+        "right": {
+          "resilience": {
+            "failureThreshold": 9
+          }
+        }
+      },
+      "op": "config_diff",
+      "out": [
+        {
+          "key": "resilience.failureThreshold",
+          "left": {
+            "source": "default",
+            "value": 5
+          },
+          "right": {
+            "source": "config",
+            "value": 9
+          }
+        }
+      ]
+    },
+    {
+      "in": {
+        "left": {
+          "handlers": {
+            "metaTools": true
+          }
+        },
+        "right": {}
+      },
+      "op": "config_diff",
+      "out": [
+        {
+          "key": "handlers.metaTools",
+          "left": {
+            "source": "config",
+            "value": true
+          },
+          "right": {
+            "source": "default",
+            "value": false
+          }
+        }
+      ]
+    },
+    {
+      "in": {
+        "key": "listen",
+        "left": {
+          "source": "config",
+          "value": "a:1"
+        },
+        "right": {
+          "source": "config",
+          "value": "b:2"
+        }
+      },
+      "op": "config_diff_line",
+      "out": "listen: \"a:1\" (config) -> \"b:2\" (config)"
+    },
+    {
+      "in": {
+        "key": "resilience.failureThreshold",
+        "left": {
+          "source": "default",
+          "value": 5
+        },
+        "right": {
+          "source": "config",
+          "value": 9
+        }
+      },
+      "op": "config_diff_line",
+      "out": "resilience.failureThreshold: 5 (default) -> 9 (config)"
+    },
+    {
+      "in": {
+        "key": "handlers.metaTools",
+        "left": {
+          "source": "config",
+          "value": true
+        },
+        "right": {
+          "source": "default",
+          "value": false
+        }
+      },
+      "op": "config_diff_line",
+      "out": "handlers.metaTools: true (config) -> false (default)"
+    },
+    {
+      "in": "127.0.0.1",
+      "op": "security_is_loopback",
+      "out": true
+    },
+    {
+      "in": "localhost",
+      "op": "security_is_loopback",
+      "out": true
+    },
+    {
+      "in": "::1",
+      "op": "security_is_loopback",
+      "out": true
+    },
+    {
+      "in": "[::1]",
+      "op": "security_is_loopback",
+      "out": true
+    },
+    {
+      "in": "127.5.5.5",
+      "op": "security_is_loopback",
+      "out": true
+    },
+    {
+      "in": "0.0.0.0",
+      "op": "security_is_loopback",
+      "out": false
+    },
+    {
+      "in": "::",
+      "op": "security_is_loopback",
+      "out": false
+    },
+    {
+      "in": "10.0.0.4",
+      "op": "security_is_loopback",
+      "out": false
+    },
+    {
+      "in": "example.com",
+      "op": "security_is_loopback",
+      "out": false
+    },
+    {
+      "in": "",
+      "op": "security_is_loopback",
+      "out": false
+    },
+    {
+      "in": {
+        "has_client_auth": false,
+        "host": "127.0.0.1"
+      },
+      "op": "security_check_bind",
+      "out": []
+    },
+    {
+      "in": {
+        "has_client_auth": false,
+        "host": "0.0.0.0"
+      },
+      "op": "security_check_bind",
+      "out": [
+        {
+          "code": "insecure-bind",
+          "level": "error",
+          "message": "refusing to bind non-loopback address 0.0.0.0 without client authentication; bind 127.0.0.1, set auth.clientTokens, or pass --insecure"
+        }
+      ]
+    },
+    {
+      "in": {
+        "has_client_auth": true,
+        "host": "0.0.0.0"
+      },
+      "op": "security_check_bind",
+      "out": []
+    },
+    {
+      "in": {
+        "has_client_auth": false,
+        "host": "10.0.0.4"
+      },
+      "op": "security_check_bind",
+      "out": [
+        {
+          "code": "insecure-bind",
+          "level": "error",
+          "message": "refusing to bind non-loopback address 10.0.0.4 without client authentication; bind 127.0.0.1, set auth.clientTokens, or pass --insecure"
+        }
+      ]
+    },
+    {
+      "in": {
+        "has_client_auth": false,
+        "host": ""
+      },
+      "op": "security_check_bind",
+      "out": [
+        {
+          "code": "insecure-bind",
+          "level": "error",
+          "message": "refusing to bind non-loopback address  without client authentication; bind 127.0.0.1, set auth.clientTokens, or pass --insecure"
+        }
+      ]
+    },
+    {
+      "in": {
+        "backends": [
+          "b0=127.0.0.1:9101",
+          "b1=127.0.0.1:9102,127.0.0.1:9202"
+        ],
+        "listen": 9100
+      },
+      "op": "config_adapt",
+      "out": {
+        "backends": {
+          "b0": {
+            "addresses": [
+              "127.0.0.1:9101"
+            ]
+          },
+          "b1": {
+            "addresses": [
+              "127.0.0.1:9102",
+              "127.0.0.1:9202"
+            ]
+          }
+        },
+        "listen": "127.0.0.1:9100"
+      }
+    },
+    {
+      "in": {
+        "backends": {
+          "b0": "127.0.0.1:9101"
+        },
+        "listen": ":9100"
+      },
+      "op": "config_adapt",
+      "out": {
+        "backends": {
+          "b0": {
+            "addresses": [
+              "127.0.0.1:9101"
+            ]
+          }
+        },
+        "listen": "127.0.0.1:9100"
+      }
+    },
+    {
+      "in": {
+        "backends": {
+          "b0": {
+            "addresses": [
+              "127.0.0.1:9101"
+            ]
+          }
+        },
+        "listen": "127.0.0.1:9100"
+      },
+      "op": "config_adapt",
+      "out": {
+        "backends": {
+          "b0": {
+            "addresses": [
+              "127.0.0.1:9101"
+            ]
+          }
+        },
+        "listen": "127.0.0.1:9100"
+      }
+    },
+    {
+      "in": {
+        "auth": {
+          "clientTokens": [
+            "t"
+          ]
+        },
+        "backends": {
+          "b0": {
+            "address": "127.0.0.1:9101"
+          }
+        }
+      },
+      "op": "config_adapt",
+      "out": {
+        "auth": {
+          "clientTokens": [
+            "t"
+          ]
+        },
+        "backends": {
+          "b0": {
+            "address": "127.0.0.1:9101"
+          }
+        }
+      }
+    },
+    {
+      "in": {
+        "listen": true
+      },
+      "op": "config_adapt",
+      "out": {
+        "listen": true
+      }
+    },
+    {
+      "in": {
+        "backends": [
+          "malformed",
+          "b0=127.0.0.1:9101"
+        ]
+      },
+      "op": "config_adapt",
+      "out": {
+        "backends": {
+          "b0": {
+            "addresses": [
+              "127.0.0.1:9101"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "in": {
+        "backends": "weird"
+      },
+      "op": "config_adapt",
+      "out": {
+        "backends": "weird"
+      }
+    },
+    {
+      "in": {
+        "id": 1,
+        "jsonrpc": "2.0",
+        "method": "tools/call",
+        "params": {
+          "_meta": {
+            "authorization": "Bearer abc",
+            "claims": {
+              "iss": "x"
+            }
+          },
+          "arguments": {
+            "apiKey": "sk-live-123",
+            "note": "keep"
+          },
+          "name": "b__do"
+        }
+      },
+      "op": "tap_redact",
+      "out": {
+        "id": 1,
+        "jsonrpc": "2.0",
+        "method": "tools/call",
+        "params": {
+          "_meta": {
+            "authorization": "***",
+            "claims": "***"
+          },
+          "arguments": {
+            "apiKey": "***",
+            "note": "keep"
+          },
+          "name": "b__do"
+        }
+      }
+    },
+    {
+      "in": {
+        "id": 2,
+        "jsonrpc": "2.0",
+        "result": {
+          "content": [
+            {
+              "text": "ok",
+              "type": "text"
+            }
+          ],
+          "token": "t"
+        }
+      },
+      "op": "tap_redact",
+      "out": {
+        "id": 2,
+        "jsonrpc": "2.0",
+        "result": {
+          "content": [
+            {
+              "text": "ok",
+              "type": "text"
+            }
+          ],
+          "token": "***"
+        }
+      }
+    },
+    {
+      "in": {
+        "nested": [
+          {
+            "secret": "s"
+          },
+          {
+            "Password": "p"
+          },
+          {
+            "fine": 1
+          }
+        ]
+      },
+      "op": "tap_redact",
+      "out": {
+        "nested": [
+          {
+            "secret": "***"
+          },
+          {
+            "Password": "***"
+          },
+          {
+            "fine": 1
+          }
+        ]
+      }
+    },
+    {
+      "in": "not-an-object",
+      "op": "tap_redact",
+      "out": "not-an-object"
+    },
+    {
+      "in": {
+        "direction": "c2s",
+        "message": {
+          "id": 1,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "authorization": "Bearer abc",
+              "claims": {
+                "iss": "x"
+              }
+            },
+            "arguments": {
+              "apiKey": "sk-live-123",
+              "note": "keep"
+            },
+            "name": "b__do"
+          }
+        }
+      },
+      "op": "tap_capture",
+      "out": {
+        "direction": "c2s",
+        "id": 1,
+        "message": {
+          "id": 1,
+          "jsonrpc": "2.0",
+          "method": "tools/call",
+          "params": {
+            "_meta": {
+              "authorization": "***",
+              "claims": "***"
+            },
+            "arguments": {
+              "apiKey": "***",
+              "note": "keep"
+            },
+            "name": "b__do"
+          }
+        },
+        "method": "tools/call"
+      }
+    },
+    {
+      "in": {
+        "direction": "s2c",
+        "message": {
+          "id": 2,
+          "jsonrpc": "2.0",
+          "result": {
+            "content": [
+              {
+                "text": "ok",
+                "type": "text"
+              }
+            ],
+            "token": "t"
+          }
+        }
+      },
+      "op": "tap_capture",
+      "out": {
+        "direction": "s2c",
+        "id": 2,
+        "message": {
+          "id": 2,
+          "jsonrpc": "2.0",
+          "result": {
+            "content": [
+              {
+                "text": "ok",
+                "type": "text"
+              }
+            ],
+            "token": "***"
+          }
+        },
+        "method": null
+      }
+    },
+    {
+      "in": {
+        "direction": "c2s",
+        "message": "not-an-object"
+      },
+      "op": "tap_capture",
+      "out": {
+        "direction": "c2s",
+        "id": null,
+        "message": "not-an-object",
+        "method": null
+      }
+    },
+    {
+      "in": {},
+      "op": "config_error_catalog",
+      "out": [
+        {
+          "description": "the config is not a JSON object",
+          "docsUrl": "CONFIG_ERRORS.md#not-object",
+          "hint": "wrap the settings in a top-level { ... } object",
+          "slug": "not-object"
+        },
+        {
+          "description": "'backends' is not a JSON object",
+          "docsUrl": "CONFIG_ERRORS.md#backends-not-object",
+          "hint": "make 'backends' a map of id to { address }",
+          "slug": "backends-not-object"
+        },
+        {
+          "description": "a backend id is empty or contains the reserved '__' delimiter",
+          "docsUrl": "CONFIG_ERRORS.md#invalid-backend-id",
+          "hint": "rename the backend so its id has no '__'",
+          "slug": "invalid-backend-id"
+        },
+        {
+          "description": "a backend declares no address",
+          "docsUrl": "CONFIG_ERRORS.md#backend-no-addresses",
+          "hint": "give the backend an 'address' or a non-empty 'addresses'",
+          "slug": "backend-no-addresses"
+        },
+        {
+          "description": "the config has no 'listen' address",
+          "docsUrl": "CONFIG_ERRORS.md#missing-listen",
+          "hint": "add \"listen\": \"127.0.0.1:PORT\"",
+          "slug": "missing-listen"
+        },
+        {
+          "description": "namespacing.strategy is not a supported strategy",
+          "docsUrl": "CONFIG_ERRORS.md#unknown-collision-strategy",
+          "hint": "set it to prefix, priority, manual, or passthrough",
+          "slug": "unknown-collision-strategy"
+        },
+        {
+          "description": "a rest handler id is missing or invalid",
+          "docsUrl": "CONFIG_ERRORS.md#invalid-handler-id",
+          "hint": "give the handler a non-empty id without '__'",
+          "slug": "invalid-handler-id"
+        },
+        {
+          "description": "a handler id collides with a backend id",
+          "docsUrl": "CONFIG_ERRORS.md#handler-backend-collision",
+          "hint": "rename the handler or the backend",
+          "slug": "handler-backend-collision"
+        },
+        {
+          "description": "a rest handler has no 'baseUrl'",
+          "docsUrl": "CONFIG_ERRORS.md#handler-missing-baseurl",
+          "hint": "add a 'baseUrl' to the handler",
+          "slug": "handler-missing-baseurl"
+        },
+        {
+          "description": "the config is not valid JSON",
+          "docsUrl": "CONFIG_ERRORS.md#invalid-json",
+          "hint": "fix the JSON syntax at the reported line and column",
+          "slug": "invalid-json"
+        }
+      ]
+    },
+    {
+      "in": "not-a-json-object",
+      "op": "config_diagnose_slug",
+      "out": "not-object"
+    },
+    {
+      "in": {
+        "backends": "x",
+        "listen": "a:1"
+      },
+      "op": "config_diagnose_slug",
+      "out": "backends-not-object"
+    },
+    {
+      "in": {
+        "backends": {
+          "b__x": {
+            "address": "h:1"
+          }
+        },
+        "listen": "a:1"
+      },
+      "op": "config_diagnose_slug",
+      "out": "invalid-backend-id"
+    },
+    {
+      "in": {
+        "backends": {
+          "b0": {}
+        },
+        "listen": "a:1"
+      },
+      "op": "config_diagnose_slug",
+      "out": "backend-no-addresses"
+    },
+    {
+      "in": {
+        "backends": {
+          "b0": "not-an-object"
+        },
+        "listen": "a:1"
+      },
+      "op": "config_diagnose_slug",
+      "out": "backend-no-addresses"
+    },
+    {
+      "in": {
+        "backends": {
+          "b0": {
+            "address": "h:1"
+          }
+        }
+      },
+      "op": "config_diagnose_slug",
+      "out": "missing-listen"
+    },
+    {
+      "in": {
+        "listen": "a:1",
+        "namespacing": {
+          "strategy": "nope"
+        }
+      },
+      "op": "config_diagnose_slug",
+      "out": "unknown-collision-strategy"
+    },
+    {
+      "in": {
+        "handlers": {
+          "rest": [
+            {
+              "baseUrl": "http://x",
+              "id": "h__x"
+            }
+          ]
+        },
+        "listen": "a:1"
+      },
+      "op": "config_diagnose_slug",
+      "out": "invalid-handler-id"
+    },
+    {
+      "in": {
+        "backends": {
+          "b0": {
+            "address": "h:1"
+          }
+        },
+        "handlers": {
+          "rest": [
+            {
+              "baseUrl": "http://x",
+              "id": "b0"
+            }
+          ]
+        },
+        "listen": "a:1"
+      },
+      "op": "config_diagnose_slug",
+      "out": "handler-backend-collision"
+    },
+    {
+      "in": {
+        "handlers": {
+          "rest": [
+            {
+              "id": "h0"
+            }
+          ]
+        },
+        "listen": "a:1"
+      },
+      "op": "config_diagnose_slug",
+      "out": "handler-missing-baseurl"
+    },
+    {
+      "in": {
+        "backends": {
+          "b0": {
+            "address": "h:1"
+          }
+        },
+        "listen": "a:1"
+      },
+      "op": "config_diagnose_slug",
+      "out": null
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+[package]
+name = "yamp"
+version = "0.0.0"
+edition = "2021"
+description = "Yet Another MCP Proxy, Rust arm"
+license = "Apache-2.0"
+repository = "https://github.com/mcpx-project/rust-yamp"
+
+[dependencies]
+tokio = { version = "1", features = ["io-util", "rt", "rt-multi-thread", "macros", "sync", "net", "fs", "time", "signal"] }
+serde_json = "1"
+futures = "0.3"
+# σ1 (the single dependency exception): JSON Schema validation for server-originated
+# tools. stdlib has no validator and it cannot be hand-rolled to byte-parity, so
+# both arms take a dependency; the corpus pins accept/reject verdicts only.
+jsonschema = { version = "0.47", default-features = false }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["io-util", "rt", "rt-multi-thread", "macros", "sync", "time", "fs"] }
